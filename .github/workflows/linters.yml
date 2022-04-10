@@ -23,7 +23,7 @@ jobs:
           node-version: "12.x"
       - name: Setup ESLint
         run: |
-          npm install --save-dev eslint@^8.13.0 eslint-config-airbnb@^19.0.4 eslint-plugin-import@^2.26.0 eslint-plugin-jsx-a11y@^6.5.1 eslint-plugin-react@^7.29.4 eslint-plugin-react-hooks@^^4.4.0
+          npm install --save-dev eslint@^8.13.0 eslint-config-airbnb@^19.0.4 eslint-plugin-import@^2.26.0 eslint-plugin-jsx-a11y@^6.5.1 eslint-plugin-react@^7.29.4 eslint-plugin-react-hooks@^4.4.0
           [ -f .eslintrc.json ]
       - name: ESLint Report
         run: npx eslint .
