@@ -1,17 +1,35 @@
-@import "https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap";
-@import "https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Poppins:wght@700&family=Roboto&display=swap";
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.text-1 {
-  color: #797979;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Poppins", sans-serif; }
 
+a {
+  font-family: "Roboto", sans-serif;
+  text-decoration: none; }
+
+p,
+span {
+  font-family: "Roboto", sans-serif; }
+
+input {
+  outline: none; }
+
+.text-1 {
+  color: #797979;
+  font-family: "Dosis", sans-serif; }
+
 .text-2 {
-  color: #BBB;
+  color: #bbb;
   font-size: 14px;
   font-family: "Roboto", sans-serif; }
 
@@ -22,8 +40,63 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   .app-logo {
     animation: App-logo-spin infinite 20s linear; } }
+.input-text-content span,
+.input-text-content input {
+  font-family: "Roboto", sans-serif; }
+.input-text-content span {
+  color: #797979;
+  font-size: 15px; }
+.input-text-content input {
+  border-radius: 20px;
+  border: 1px solid #e1e1e1;
+  color: #797979; }
+.input-text-content .google-btn {
+  border-radius: 20px;
+  border: 1px solid #e1e1e1;
+  background-color: white; }
+  .input-text-content .google-btn span {
+    color: #207cc6; }
+
+.primary-button {
+  border-radius: 20px;
+  background-color: #207cc6;
+  color: white;
+  border: 0;
+  font-family: "Poppins", sans-serif; }
+
+.line h6 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #bbb;
+  line-height: 0.1em;
+  margin: 10px 0 5px; }
+.line h6 span {
+  background: #ecf6fe;
+  padding: 0 10px;
+  color: #bbb; }
+
+.f-c-link-b span,
+.f-c-link-b a {
+  color: #797979;
+  font-size: 15px; }
+.f-c-link-b a:hover {
+  color: #207cc6; }
+
+.error input {
+  color: #c46363;
+  border: 1px solid #c46363; }
+.error .error-message span {
+  color: #c46363; }
+
+.success input {
+  color: #419d5a;
+  border: 1px solid #419d5a; }
+
+.shared-container {
+  background-color: #ecf6fe; }
+
 .empty-container {
-  background-color: #ECF6FE; }
+  background-color: #ecf6fe; }
   .empty-container .empty-content {
     min-height: 100vh;
     display: flex;
@@ -33,7 +106,7 @@ body {
     font-size: calc(10px + 2vmin); }
 
 .loginContainer {
-  background-color: #ECF6FE;
+  background-color: #ecf6fe;
   padding: 0; }
   .loginContainer .row {
     margin: 0;
@@ -43,14 +116,42 @@ body {
       padding: 0; }
   .loginContainer .loginContent {
     height: 100vh; }
-    .loginContainer .loginContent .loginLeft {
-      background: linear-gradient(0deg, rgba(48, 125, 207, 0.6), rgba(64, 125, 216, 0.6)), #468ad4; }
-      .loginContainer .loginContent .loginLeft .c-lf {
+    .loginContainer .loginContent .left {
+      background: #207cc6; }
+      .loginContainer .loginContent .left .c-lf {
         width: 95%;
         height: 100%;
         background-image: url(../images/BD1.png);
         background-size: contain;
         background-repeat: no-repeat;
-        background-position: bottom; }
+        background-position: bottom;
+        padding: 60px; }
+        .loginContainer .loginContent .left .c-lf h1 {
+          color: #ecf6fe;
+          font-size: 3em; }
+        .loginContainer .loginContent .left .c-lf p {
+          font-size: 2em;
+          color: white;
+          font-family: "Dosis", sans-serif; }
+          .loginContainer .loginContent .left .c-lf p span {
+            text-transform: uppercase;
+            color: #0bda6c;
+            font-family: "Dosis", sans-serif; }
+        .loginContainer .loginContent .left .c-lf h4 {
+          color: white;
+          font-family: "Dosis", sans-serif;
+          font-size: 2em; }
+    .loginContainer .loginContent .right .c-f-content {
+      width: 25em; }
+  .loginContainer .c-c-link a {
+    color: #797979; }
+    .loginContainer .c-c-link a:hover {
+      color: #207cc6; }
+
+.signup-container {
+  background-color: #ecf6fe; }
+
+.doctor-container {
+  background-color: #ecf6fe; }
 
 /*# sourceMappingURL=style.css.map */

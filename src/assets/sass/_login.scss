@@ -5,7 +5,7 @@
   .row {
     margin: 0;
     padding: 0;
-
+  
     .col-6 {
       margin: 0;
       padding: 0;
@@ -15,8 +15,7 @@
   .loginContent {
     height: 100vh;
 
-    .loginLeft {
-      // background-color: $pColor;
+    .left {
       background: $bg1;
 
       .c-lf {
@@ -26,6 +25,45 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: bottom;
+        padding: 60px;
+
+        h1{
+          color: $sColor;
+          font-size: 3em;
+        }
+        p {
+          font-size: 2em;
+          color: white;
+          font-family: $dosis;
+          span {
+            text-transform: uppercase;
+            color: $green;
+            font-family: $dosis;
+          }
+        }
+
+
+        h4 {
+          color: white;
+          font-family: $dosis;
+          font-size: 2em;
+        }
+      }
+    }
+
+    .right {
+      .c-f-content {
+        width: 25em;
+      }
+    }
+  }
+
+
+  .c-c-link{
+    a {
+      color: $textColor-1;
+      &:hover {
+        color: $pColor;
       }
     }
   }

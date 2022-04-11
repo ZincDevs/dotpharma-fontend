@@ -16,9 +16,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $poppins;
+}
+
+a {
+  font-family: $roboto;
+  text-decoration: none;
+}
+
+p,
+span {
+  font-family: $roboto;
+}
+
+input {
+  outline: none;
+}
+
 .text-1 {
   color: $textColor-1;
-  font-family: $poppins;
+  font-family: $dosis;
 }
 
 .text-2 {
@@ -35,5 +58,88 @@ body {
 @media (prefers-reduced-motion: no-preference) {
   .app-logo {
     animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.input-text-content {
+  span,
+  input {
+    font-family: $roboto;
+  }
+  span {
+    color: $textColor-1;
+    font-size: 15px;
+  }
+  input {
+    border-radius: 20px;
+    border: 1px solid $bColor;
+    color: $textColor-1;
+  }
+
+  .google-btn {
+    border-radius: 20px;
+    border: 1px solid $bColor;
+    background-color: white;
+    span {
+      color: $pColor;
+    }
+  }
+}
+
+.primary-button {
+  border-radius: 20px;
+  background-color: $pColor;
+  color: white;
+  border: 0;
+  font-family: $poppins;
+}
+
+
+.line{
+  h6 {
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid $textColor-2; 
+    line-height: 0.1em;
+    margin: 10px 0 5px; 
+ } 
+ 
+ h6 span { 
+     background: $sColor; 
+     padding:0 10px; 
+     color: $textColor-2;
+ }
+}
+
+.f-c-link-b {
+  span,
+  a {
+    color: $textColor-1;
+    font-size: 15px;
+  }
+  a {
+   &:hover {
+     color: $pColor;
+   }
+  }
+}
+
+
+.error {
+  input {
+    color: $dangerColor;
+    border: 1px solid $dangerColor;
+  }
+  .error-message {
+    span {
+      color: $dangerColor;
+    }
+  }
+}
+
+.success {
+  input {
+    color: $successColor;
+    border: 1px solid $successColor;
   }
 }
