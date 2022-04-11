@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
+import Logo from './Logo';
 
 function Welcome() {
   return (
@@ -23,6 +25,20 @@ function Welcome() {
   );
 }
 
+function ContentHead({ label }) {
+  return (
+    <div className="c-header">
+      <div className="w-auto d-flex justify-content-center align-items-center py-2">
+        <Logo />
+      </div>
+      <div className="w-auto d-flex justify-content-center align-items-center py-2">
+        <h3 className="text-1">{label}</h3>
+      </div>
+    </div>
+  );
+}
+
 export {
   Welcome,
+  ContentHead,
 };
