@@ -23,7 +23,7 @@ export default function Login() {
               <Email handleOnChange={() => {}} />
               <Password handleOnChange={() => {}} />
               <div className="c-c-link px-3 py-2 d-flex flex-row-reverse w-auto">
-                <Link to="/password-reset">Forgot password?</Link>
+                <Link to="/login/password-reset">Forgot password?</Link>
               </div>
               <Button label="Sign In" classes="primary-button" />
             </div>
