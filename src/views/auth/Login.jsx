@@ -5,17 +5,14 @@ import {
   Email, Password, Button, GoogleBtn,
 } from '../shared/Input';
 import Line from '../shared/Line';
-import { Welcome, ContentHead } from '../shared/Contents';
+import { ContentHead } from '../shared/Contents';
 
 export default function Login() {
   return (
     <div className="loginContainer">
       <div className="row loginContent">
-        <div className="col-6 d-none d-lg-flex left">
-          <Welcome />
-        </div>
-        <div className="col-lg-6 col-12 right d-flex justify-content-center align-items-center">
-          <div className="c-f-content">
+        <div className="col-12 right d-flex justify-content-center align-items-center">
+          <div className="c-f-content p-4">
             <ContentHead label="Sign In 🤞" />
             <div className="c-content-fields w-auto">
               <GoogleBtn />

@@ -99,13 +99,13 @@ input {
   h6 {
     width: 100%; 
     text-align: center; 
-    border-bottom: 1px solid $textColor-2; 
+    border-bottom: 1px solid $bColor; 
     line-height: 0.1em;
     margin: 10px 0 5px; 
  } 
  
  h6 span { 
-     background: $sColor; 
+     background: white; 
      padding:0 10px; 
      color: $textColor-2;
  }
