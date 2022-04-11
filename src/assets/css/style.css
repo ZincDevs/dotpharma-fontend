@@ -67,11 +67,11 @@ input {
 .line h6 {
   width: 100%;
   text-align: center;
-  border-bottom: 1px solid #bbb;
+  border-bottom: 1px solid #e1e1e1;
   line-height: 0.1em;
   margin: 10px 0 5px; }
 .line h6 span {
-  background: #ecf6fe;
+  background: white;
   padding: 0 10px;
   color: #bbb; }
 
@@ -106,7 +106,7 @@ input {
     font-size: calc(10px + 2vmin); }
 
 .loginContainer {
-  background-color: #ecf6fe;
+  background: #ecf6fe url(../images/BD1.png) center/85em 50em no-repeat;
   padding: 0; }
   .loginContainer .row {
     margin: 0;
@@ -121,10 +121,6 @@ input {
       .loginContainer .loginContent .left .c-lf {
         width: 95%;
         height: 100%;
-        background-image: url(../images/BD1.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: bottom;
         padding: 60px; }
         .loginContainer .loginContent .left .c-lf h1 {
           color: #ecf6fe;
@@ -142,7 +138,10 @@ input {
           font-family: "Dosis", sans-serif;
           font-size: 2em; }
     .loginContainer .loginContent .right .c-f-content {
-      width: 25em; }
+      width: 25em;
+      background-color: white;
+      border-radius: 1em;
+      box-shadow: 0 0 7px 0 #e1e1e1; }
   .loginContainer .c-c-link a {
     color: #797979; }
     .loginContainer .c-c-link a:hover {

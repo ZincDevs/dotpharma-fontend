@@ -1,5 +1,10 @@
 .loginContainer {
-  background-color: $sColor;
+  background: $sColor url(../images/BD1.png) center/85em 50em no-repeat;
+  // background-color: $sColor;
+  // background-image: url(../images/BD1.png);
+  // background-size: contain;
+  // background-repeat: no-repeat;
+  // background-position: bottom;
   padding: 0;
 
   .row {
@@ -21,10 +26,6 @@
       .c-lf {
         width: 95%;
         height: 100%;
-        background-image: url(../images/BD1.png);
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: bottom;
         padding: 60px;
 
         h1{
@@ -54,6 +55,9 @@
     .right {
       .c-f-content {
         width: 25em;
+        background-color: white;
+        border-radius: 1em;
+        box-shadow: 0 0 7px 0 $bColor;
       }
     }
   }

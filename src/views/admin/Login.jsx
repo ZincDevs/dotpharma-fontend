@@ -8,7 +8,7 @@ export default function Login() {
     <div className="loginContainer">
       <div className="row loginContent">
         <div className="col-12 right d-flex justify-content-center align-items-center">
-          <div className="c-f-content">
+          <div className="c-f-content p-4">
             <ContentHead label="Sign In 🔐" />
             <div className="c-content-fields w-auto">
               <Email handleOnChange={() => {}} />
