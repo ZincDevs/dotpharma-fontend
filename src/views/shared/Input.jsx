@@ -1,13 +1,19 @@
+/* eslint-disable no-lone-blocks */
+/* eslint-disable max-len */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { googleIcon } from '../../assets';
+import React, { useState } from 'react';
+import key from 'uniqid';
+import { Link } from 'react-router-dom';
 
 function Text() {
   return (
     <div className="input-text-content">
-      <input type="text" />
+      <input type="text" required />
     </div>
   );
 }
@@ -22,13 +28,15 @@ function Email({ label, handleOnChange, errors }) {
         <input
           className="w-100 px-3 py-2"
           type="email"
+          name="email"
           onChange={handleOnChange}
           placeholder="example@gmail.com"
+          required
         />
       </div>
       {errors && (
-        <div className="d-flex px-3 pt-2 error-message">
-          {errors.map(({ message }) => (<span>{message}</span>))}
+        <div className="d-flex flex-column px-3 pt-2 error-message">
+          {errors.map(({ message }) => (<span key={key()}>{message}</span>))}
         </div>
       )}
     </div>
@@ -42,22 +50,31 @@ Email.defaultProps = {
 function Password({
   label, handleOnChange, errors,
 }) {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <div className={`py-1 input-text-content w-auto ${errors && 'error'}`}>
       <div className="px-3 py-1">
         <span>{label}</span>
       </div>
-      <div className="field w-auto">
+      <div className="field w-auto d-flex flex-row">
         <input
-          className="w-100 px-3 py-2"
-          type="password"
+          className="w-auto px-3 py-2 flex-grow-1"
+          type={showPassword ? 'text' : 'password'}
           onChange={handleOnChange}
+          name="password"
           placeholder="********"
+          required
         />
+        <span className="icon px-3 py-2" onClick={handleShowPassword}>
+          <i className={`bi ${showPassword ? 'bi-eye-fill' : 'bi-eye'}`} />
+        </span>
       </div>
       {errors && (
-        <div className="d-flex px-3 pt-2 error-message">
-          {errors.map(({ message }) => (<span>{message}</span>))}
+        <div className="d-flex flex-column px-3 pt-2 error-message">
+          {errors.map(({ message }) => (<span key={key()}>{message}</span>))}
         </div>
       )}
     </div>
@@ -70,31 +87,40 @@ Password.defaultProps = {
   success: true,
 };
 
-function Button({ handleOnClick, label, classes }) {
+function Submit({ label, classes }) {
   return (
     <div className="py-1 input-text-content w-auto">
-      <button className={`w-100 px-3 py-2 ${classes}`} onChange={handleOnClick}>
-        {label}
-      </button>
+      <input type="submit" className={`w-100 px-3 py-2 ${classes}`} value={label} />
     </div>
   );
 }
 
-function GoogleBtn() {
+function TCPPAgree({ handleAgree, errors }) {
   return (
-    <div className="py-2 w-auto input-text-content">
-      <a href="">
-        <div className="w-100 py-2 px-3 google-btn d-flex justify-content-center align-items-center">
-          <div>
-            <img src={googleIcon} style={{ width: 30, height: 23 }} alt="google" />
-            <span className="px-1">Continue with google</span>
-          </div>
+    <div className={`input-text-content pt-2 d-flex flex-column ${errors && 'error'}`}>
+      <div className="d-flex flex-row">
+        <div className="td-st pt-2">
+          <label className="agree-container">
+            <input type="checkbox" onChange={handleAgree} />
+            <span className="checkmark" />
+          </label>
         </div>
-      </a>
+        <div className="td-st">
+          <span className="px-1">I accept the</span>
+          <Link to="/terms-and-conditions">Terms & Conditions</Link>
+          <span className="px-1">and have read the</span>
+          <Link to="/privacy-policy">Privacy Policy</Link>
+        </div>
+      </div>
+      {errors && (
+        <div className="d-flex flex-column px-3 pt-2 error-message">
+          {errors.map(({ message }) => (<span key={key()}>{message}</span>))}
+        </div>
+      )}
     </div>
   );
 }
 
 export {
-  Text, Email, Password, Button, GoogleBtn,
+  Text, Email, Password, Submit, TCPPAgree,
 };

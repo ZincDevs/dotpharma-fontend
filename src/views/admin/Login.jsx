@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ContentHead } from '../shared/Contents';
-import { Email, Password, Button } from '../shared/Input';
+import { Email, Password } from '../shared/Input';
+import { Button } from '../shared/Elements';
 
 export default function Login() {
   return (

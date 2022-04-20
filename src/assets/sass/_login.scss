@@ -51,15 +51,6 @@
         }
       }
     }
-
-    .right {
-      .c-f-content {
-        width: 25em;
-        background-color: white;
-        border-radius: 1em;
-        box-shadow: 0 0 7px 0 $bColor;
-      }
-    }
   }
 
 
@@ -71,4 +62,30 @@
       }
     }
   }
+}
+
+.c-f-content {
+  width: 30em;
+  background-color: white;
+  box-shadow: 0 0 7px 0 $bColor;
+}
+
+.c-f-i-content {
+  max-height: calc(100vh - 25px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.c-f-i-content::-webkit-scrollbar {
+  width: 3px;
+}
+
+.c-f-i-content::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(233, 233, 233, 0.3);
+  border-radius: 0;
+}
+
+.c-f-i-content::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background-color: lighten($pColor, $amount: 40);
 }
