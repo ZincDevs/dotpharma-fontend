@@ -17,6 +17,10 @@ a {
   font-family: "Roboto", sans-serif;
   text-decoration: none; }
 
+p {
+  font-size: 0.9em;
+  color: #797979; }
+
 p,
 span {
   font-family: "Roboto", sans-serif; }
@@ -40,6 +44,12 @@ input {
 @media (prefers-reduced-motion: no-preference) {
   .app-logo {
     animation: App-logo-spin infinite 20s linear; } }
+.input-text-content .field {
+  border-radius: 20px;
+  border: 1px solid #e1e1e1; }
+  .input-text-content .field .icon {
+    border: 1px solid rgba(253, 253, 253, 0);
+    cursor: pointer; }
 .input-text-content span,
 .input-text-content input {
   font-family: "Roboto", sans-serif; }
@@ -47,22 +57,15 @@ input {
   color: #797979;
   font-size: 15px; }
 .input-text-content input {
-  border-radius: 20px;
-  border: 1px solid #e1e1e1;
-  color: #797979; }
+  color: #797979;
+  border: 0;
+  border-radius: 20px; }
 .input-text-content .google-btn {
   border-radius: 20px;
   border: 1px solid #e1e1e1;
   background-color: white; }
   .input-text-content .google-btn span {
     color: #207cc6; }
-
-.primary-button {
-  border-radius: 20px;
-  background-color: #207cc6;
-  color: white;
-  border: 0;
-  font-family: "Poppins", sans-serif; }
 
 .line h6 {
   width: 100%;
@@ -82,19 +85,136 @@ input {
 .f-c-link-b a:hover {
   color: #207cc6; }
 
-.error input {
+.error .field {
   color: #c46363;
   border: 1px solid #c46363; }
 .error .error-message span {
-  color: #c46363; }
+  color: #c46363;
+  font-size: .8em; }
 
-.success input {
+.success .field {
   color: #419d5a;
   border: 1px solid #419d5a; }
+
+.hidden {
+  visibility: hidden; }
 
 .shared-container {
   background-color: #ecf6fe; }
 
+.progress-bar {
+  position: relative;
+  height: 4px;
+  width: 100%;
+  background-color: white;
+  border-radius: 2px;
+  overflow: hidden; }
+
+.progress {
+  position: relative;
+  height: 4px;
+  width: 100%;
+  background-color: #e9f3fc;
+  border-radius: 2px;
+  overflow: hidden; }
+
+.progress .determinate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #e9f3fc;
+  -webkit-transition: width 0.3s linear;
+  transition: width 0.3s linear; }
+
+.progress .indeterminate {
+  background-color: #92c4ed; }
+
+.error-container {
+  border-radius: 10px;
+  background-color: rgba(255, 172, 172, 0.719);
+  padding: 15px; }
+  .error-container .error {
+    flex-grow: 1; }
+  .error-container i {
+    color: white;
+    font-size: 15px;
+    cursor: pointer; }
+
+.progress .indeterminate::before {
+  content: "";
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  will-change: left, right;
+  -webkit-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+  animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite; }
+
+.progress .indeterminate::after {
+  content: "";
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  will-change: left, right;
+  -webkit-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+  animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+  -webkit-animation-delay: 1.15s;
+  animation-delay: 1.15s; }
+
+@keyframes indeterminate {
+  0% {
+    left: -35%;
+    right: 100%; }
+  60% {
+    left: 100%;
+    right: -90%; }
+  100% {
+    left: 100%;
+    right: -90%; } }
+@-webkit-keyframes indeterminate-short {
+  0% {
+    left: -200%;
+    right: 100%; }
+  60% {
+    left: 107%;
+    right: -8%; }
+  100% {
+    left: 107%;
+    right: -8%; } }
+@keyframes indeterminate-short {
+  0% {
+    left: -200%;
+    right: 100%; }
+  60% {
+    left: 107%;
+    right: -8%; }
+  100% {
+    left: 107%;
+    right: -8%; } }
+@-webkit-keyframes slideLeft {
+  from {
+    left: 0; }
+  to {
+    left: -100%; } }
+@keyframes slideLeft {
+  from {
+    left: 0; }
+  to {
+    left: -100%; } }
+@-webkit-keyframes zeroLeft {
+  from {
+    left: -100%; }
+  to {
+    left: 0; } }
+@keyframes zeroLeft {
+  from {
+    left: -100%; }
+  to {
+    left: 0; } }
 .empty-container {
   background-color: #ecf6fe; }
   .empty-container .empty-content {
@@ -104,6 +224,76 @@ input {
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin); }
+
+.input-text-content {
+  /* Customize the label (the agree-container) */
+  /* Hide the browser's default checkbox */
+  /* Create a custom checkbox */
+  /* On mouse-over, add a grey background color */
+  /* When the checkbox is checked, add a blue background */
+  /* Create the checkmark/indicator (hidden when not checked) */
+  /* Show the checkmark when checked */
+  /* Style the checkmark/indicator */ }
+  .input-text-content .agree-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
+  .input-text-content .agree-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0; }
+  .input-text-content .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee; }
+  .input-text-content .agree-container:hover input ~ .checkmark {
+    background-color: #ccc; }
+  .input-text-content .agree-container input:checked ~ .checkmark {
+    background-color: #207cc6; }
+  .input-text-content .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none; }
+  .input-text-content .agree-container input:checked ~ .checkmark:after {
+    display: block; }
+  .input-text-content .agree-container .checkmark:after {
+    left: 10px;
+    top: 6px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg); }
+  .input-text-content .td-st a {
+    text-decoration: underline !important;
+    color: #bbb;
+    font-weight: 600; }
+    .input-text-content .td-st a:hover {
+      color: #3a95df; }
+
+.primary-button {
+  background-color: #207cc6;
+  color: white;
+  border: 0;
+  font-family: "Poppins", sans-serif; }
+  .primary-button:hover {
+    background-color: #1e74b9; }
+
+.primary-button.disabled {
+  background-color: #bedcf4; }
 
 .loginContainer {
   background: #ecf6fe url(../images/BD1.png) center/85em 50em no-repeat;
@@ -137,15 +327,31 @@ input {
           color: white;
           font-family: "Dosis", sans-serif;
           font-size: 2em; }
-    .loginContainer .loginContent .right .c-f-content {
-      width: 25em;
-      background-color: white;
-      border-radius: 1em;
-      box-shadow: 0 0 7px 0 #e1e1e1; }
   .loginContainer .c-c-link a {
     color: #797979; }
     .loginContainer .c-c-link a:hover {
       color: #207cc6; }
+
+.c-f-content {
+  width: 30em;
+  background-color: white;
+  box-shadow: 0 0 7px 0 #e1e1e1; }
+
+.c-f-i-content {
+  max-height: calc(100vh - 25px);
+  overflow-y: scroll;
+  overflow-x: hidden; }
+
+.c-f-i-content::-webkit-scrollbar {
+  width: 3px; }
+
+.c-f-i-content::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(233, 233, 233, 0.3);
+  border-radius: 0; }
+
+.c-f-i-content::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background-color: #bedcf4; }
 
 .signup-container {
   background-color: #ecf6fe; }

@@ -2,8 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Email, Password, Button, GoogleBtn,
+  Email, Password,
 } from '../shared/Input';
+import { Button, GoogleBtn } from '../shared/Elements';
 import Line from '../shared/Line';
 import { ContentHead } from '../shared/Contents';
 

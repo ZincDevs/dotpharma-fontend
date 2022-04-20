@@ -30,6 +30,11 @@ a {
   text-decoration: none;
 }
 
+p {
+  font-size: 0.9em;
+  color: $textColor-1;
+}
+
 p,
 span {
   font-family: $roboto;
@@ -62,6 +67,14 @@ input {
 }
 
 .input-text-content {
+  .field {
+    border-radius: 20px;
+    border: 1px solid $bColor;
+    .icon {
+      border: 1px solid rgba(253, 253, 253, 0);
+      cursor: pointer;
+    }
+  }
   span,
   input {
     font-family: $roboto;
@@ -71,9 +84,9 @@ input {
     font-size: 15px;
   }
   input {
-    border-radius: 20px;
-    border: 1px solid $bColor;
     color: $textColor-1;
+    border: 0;
+    border-radius: 20px;
   }
 
   .google-btn {
@@ -84,14 +97,6 @@ input {
       color: $pColor;
     }
   }
-}
-
-.primary-button {
-  border-radius: 20px;
-  background-color: $pColor;
-  color: white;
-  border: 0;
-  font-family: $poppins;
 }
 
 
@@ -126,20 +131,24 @@ input {
 
 
 .error {
-  input {
+  .field {
     color: $dangerColor;
     border: 1px solid $dangerColor;
   }
   .error-message {
     span {
       color: $dangerColor;
+      font-size: .8em;
     }
   }
 }
 
 .success {
-  input {
+  .field {
     color: $successColor;
     border: 1px solid $successColor;
   }
+}
+.hidden {
+  visibility: hidden;
 }
