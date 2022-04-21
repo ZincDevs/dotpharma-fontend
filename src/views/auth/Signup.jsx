@@ -2,8 +2,9 @@
 /* eslint-disable brace-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { Validate } from '../../helpers';
 import {
   Email, Password, TCPPAgree,
@@ -11,8 +12,10 @@ import {
 import { Button, GoogleBtn, ProgressBar } from '../shared/Elements';
 import Line from '../shared/Line';
 import { ContentHead } from '../shared/Contents';
+import { signUp } from '../../redux/actions/Auth';
 
 export default function SignUp() {
+  const dispatch = useDispatch();
   const progressBar = useRef();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -44,15 +47,22 @@ export default function SignUp() {
   };
   const handleSignUp = e => {
     e.preventDefault();
-    if (!canContinue) { ValidateInputs(); }
+    if (!canContinue) {
+      ValidateInputs();
+    } else {
+      const data = { email, password };
+      dispatch(signUp(data));
+    }
   };
+  const signupRes = useSelector(({ auth }) => auth, shallowEqual);
+  console.log(signupRes);
 
   return (
     <div className="signUpContainer loginContainer">
       <div className="row loginContent">
         <div className="col-12 right d-flex justify-content-center align-items-center">
           <div className="c-f-content">
-            <ProgressBar ref={progressBar} />
+            <ProgressBar reff={progressBar} />
             <div className="c-f-i-content py-4 px-5">
               <ContentHead label="Sign Up 🤞" />
               <div className="c-content-fields w-auto">

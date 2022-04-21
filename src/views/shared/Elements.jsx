@@ -28,9 +28,9 @@ function GoogleBtn() {
   );
 }
 
-function ProgressBar({ ref }) {
+function ProgressBar({ reff }) {
   return (
-    <div ref={ref} className="hidden">
+    <div ref={reff} className="hidden">
       <div className="progress">
         <div className="indeterminate"> </div>
       </div>

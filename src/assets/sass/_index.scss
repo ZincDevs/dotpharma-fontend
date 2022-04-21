@@ -68,10 +68,13 @@ input {
 
 .input-text-content {
   .field {
+    position: relative;
     border-radius: 20px;
     border: 1px solid $bColor;
     .icon {
+      position: absolute;
       border: 1px solid rgba(253, 253, 253, 0);
+      right: 0;
       cursor: pointer;
     }
   }
