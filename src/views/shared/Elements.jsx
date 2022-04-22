@@ -30,7 +30,7 @@ function GoogleBtn() {
 
 function ProgressBar({ reff }) {
   return (
-    <div ref={reff} className="hidden">
+    <div ref={reff} className="">
       <div className="progress">
         <div className="indeterminate"> </div>
       </div>

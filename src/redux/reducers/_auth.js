@@ -1,13 +1,13 @@
+/* eslint-disable default-param-last */
 import { USER_SIGNUP, USER_LOGIN } from '../actions/_types';
 
-const initialState = {};
-export default (action = {}, state = initialState) => {
+export default (state = { signupResponse: { data: {} } }, action) => {
   const { type, payload, status } = action;
   switch (type) {
     case USER_SIGNUP:
       return {
         ...state,
-        signupResponce: {
+        signupResponse: {
           ...payload,
           status,
         },

@@ -8,7 +8,7 @@ import Signup from './auth/Signup';
 import PRAdmin from './admin/PRAdmin';
 import PasswordReset from './auth/PasswordReset';
 import NotFound from './shared/NotFound';
-import Verification from './auth/Verification';
+import Verification from './auth/VerificationComplete';
 import TermsAndConditions from './settings/TermsAndConditions';
 import PrivacyPolicy from './settings/PrivacyPolicy';
 

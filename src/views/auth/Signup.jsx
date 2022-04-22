@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable brace-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { connect } from 'react-redux';
 import { Validate } from '../../helpers';
 import {
   Email, Password, TCPPAgree,
@@ -13,9 +14,9 @@ import { Button, GoogleBtn, ProgressBar } from '../shared/Elements';
 import Line from '../shared/Line';
 import { ContentHead } from '../shared/Contents';
 import { signUp } from '../../redux/actions/Auth';
+import VerificationSent from './VerificationSent';
 
-export default function SignUp() {
-  const dispatch = useDispatch();
+function SignUp({ auth: { signupResponse }, signUp }) {
   const progressBar = useRef();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -23,6 +24,7 @@ export default function SignUp() {
   const [emailErrors, setEmailErrors] = useState(null);
   const [passwordErrors, setPasswordErrors] = useState(null);
   const [agreeErrors, setAgreeErrors] = useState(null);
+  const [signupSuccess, setSignupSuccess] = useState();
   const canContinue = !!(!emailErrors && !passwordErrors && email && password && agreeToTC);
 
   const handleEmailChange = e => {
@@ -51,11 +53,37 @@ export default function SignUp() {
       ValidateInputs();
     } else {
       const data = { email, password };
-      dispatch(signUp(data));
+      signUp(data);
     }
   };
-  const signupRes = useSelector(({ auth }) => auth, shallowEqual);
-  console.log(signupRes);
+  const handleSignupSuccess = () => {
+    setSignupSuccess(true);
+  };
+
+  useEffect(() => {
+    switch (signupResponse.status) {
+      case 'success': {
+        progressBar.current.classList.add('hidden');
+        handleSignupSuccess();
+        break;
+      }
+      case 'pending': {
+        progressBar.current.classList.remove('hidden');
+        break;
+      }
+      case 'fail': {
+        setEmailErrors(signupResponse.error.email && [{ ...signupResponse.error.email }]);
+        setPasswordErrors(signupResponse.error.password && [{ ...signupResponse.error.password }]);
+        progressBar.current.classList.add('hidden');
+        break;
+      }
+      default:
+    }
+  }, [signupResponse]);
+
+  if (signupSuccess) {
+    return (<VerificationSent email={email} />);
+  }
 
   return (
     <div className="signUpContainer loginContainer">
@@ -92,3 +120,9 @@ export default function SignUp() {
     </div>
   );
 }
+
+const mapStateToProps = ({ auth }) => ({
+  auth,
+});
+
+export default connect(mapStateToProps, { signUp })(SignUp);

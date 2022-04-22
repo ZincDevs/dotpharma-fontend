@@ -4,7 +4,7 @@ import PassowordComplexity from 'joi-password-complexity';
 
 const schemas = {
   signup: Joi.object({
-    email: Joi.string().email({ tlds: { allow: ['com', 'net'] } }).message(''),
+    email: Joi.string().email({ tlds: { allow: false } }).message(''),
     password: new PassowordComplexity({
       min: 8,
       max: 25,

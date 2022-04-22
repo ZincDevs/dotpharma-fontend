@@ -6,6 +6,7 @@ import { Constants } from '../../helpers';
 
 const { login_api, signup_api } = Constants;
 export const signUp = user => async dispach => {
+  dispach({ type: USER_SIGNUP, status: 'pending' });
   try {
     user.role = 'patient';
     const data = await request('post', signup_api, null, user);

@@ -68,7 +68,7 @@ input {
   border: 1px solid #e1e1e1;
   background-color: white; }
   .input-text-content .google-btn span {
-    color: #207cc6; }
+    color: #2B8DD0; }
 
 .line h6 {
   width: 100%;
@@ -86,7 +86,7 @@ input {
   color: #797979;
   font-size: 15px; }
 .f-c-link-b a:hover {
-  color: #207cc6; }
+  color: #2B8DD0; }
 
 .error .field {
   color: #c46363;
@@ -117,7 +117,7 @@ input {
   position: relative;
   height: 4px;
   width: 100%;
-  background-color: #e9f3fc;
+  background-color: #fcfdfe;
   border-radius: 2px;
   overflow: hidden; }
 
@@ -126,12 +126,12 @@ input {
   top: 0;
   left: 0;
   bottom: 0;
-  background-color: #e9f3fc;
+  background-color: #fcfdfe;
   -webkit-transition: width 0.3s linear;
   transition: width 0.3s linear; }
 
 .progress .indeterminate {
-  background-color: #92c4ed; }
+  background-color: #a7d1ed; }
 
 .error-container {
   border-radius: 10px;
@@ -218,6 +218,39 @@ input {
     left: -100%; }
   to {
     left: 0; } }
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px; }
+
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #53a4db;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite; }
+
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s; }
+
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s; }
+
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0; }
+
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px; }
+  50%, 100% {
+    top: 24px;
+    height: 32px; } }
 .empty-container {
   background-color: #ecf6fe; }
   .empty-container .empty-content {
@@ -265,7 +298,7 @@ input {
     background-color: #eee;
     border: 0; }
   .input-text-content .agree-container input:checked ~ .checkmark {
-    background-color: #207cc6;
+    background-color: #2B8DD0;
     border: 0; }
   .input-text-content .checkmark:after {
     content: "";
@@ -288,18 +321,18 @@ input {
     color: #bbb;
     font-weight: 600; }
     .input-text-content .td-st a:hover {
-      color: #3a95df; }
+      color: #53a4db; }
 
 .primary-button {
-  background-color: #207cc6;
+  background-color: #2B8DD0;
   color: white;
   border: 0;
   font-family: "Poppins", sans-serif; }
   .primary-button:hover {
-    background-color: #1e74b9; }
+    background-color: #2884c3; }
 
 .primary-button.disabled {
-  background-color: #bedcf4; }
+  background-color: #d1e7f6; }
 
 .loginContainer {
   background: #ecf6fe url(../images/BD1.png) center/85em 50em no-repeat;
@@ -336,7 +369,7 @@ input {
   .loginContainer .c-c-link a {
     color: #797979; }
     .loginContainer .c-c-link a:hover {
-      color: #207cc6; }
+      color: #2B8DD0; }
 
 .c-f-content {
   width: 30em;
@@ -357,10 +390,20 @@ input {
 
 .c-f-i-content::-webkit-scrollbar-thumb {
   border-radius: 0;
-  background-color: #bedcf4; }
+  background-color: #d1e7f6; }
 
 .signup-container {
   background-color: #ecf6fe; }
+
+.email-sent h1 {
+  color: #48AC62; }
+  .email-sent h1 i {
+    font-size: 2em; }
+.email-sent small {
+  font-size: .8em;
+  color: #797979; }
+.email-sent .error {
+  color: #c46363; }
 
 .doctor-container {
   background-color: #ecf6fe; }
