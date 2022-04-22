@@ -1,15 +1,62 @@
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import QueryString from 'query-string';
+import { useLocation, Navigate } from 'react-router-dom';
 import { Button, ProgressBar } from '../shared/Elements';
 import Loader from '../shared/Loader';
+import { verifyUser } from '../../redux/actions/User';
 
-function SignUpVerificationComple() {
-  // progressBar.current.classList.remove('hidden');
-  const error = {
-    message: 'Token expired',
+function Time({ handleRedirect }) {
+  const [rTime, setRTime] = useState(10);
+  const countDown = setInterval(() => { setRTime(rTime - 1); }, 1000);
+  if (rTime === 0) {
+    clearInterval(countDown);
+    handleRedirect();
+  }
+  return (
+    <span>{`${rTime}s`}</span>
+  );
+}
+
+function SignUpVerificationComple({ verifyUser, user: { verifyResponse } }) {
+  const [status, setStatus] = useState('pending');
+  const [done, setDone] = useState(false);
+  const location = useLocation();
+  const handleRedirect = () => {
+    setDone(true);
   };
-  const status = 'pending';
+  useEffect(() => {
+    const { token } = QueryString.parse(location.search);
+    verifyUser(token);
+  }, []);
+  useEffect(() => {
+    switch (verifyResponse.status) {
+      case 'success': {
+        setStatus('success');
+        break;
+      }
+      case 'pending': {
+        setStatus('pending');
+        break;
+      }
+      case 'fail': {
+        setStatus('fail');
+        break;
+      }
+      default:
+    }
+  }, [verifyResponse]);
+
+  if (done) {
+    return (
+      <Navigate to="/login" />
+    );
+  }
+
   return (
     <div className="empty-container d-flex flex-column email-sent text-center">
       {
@@ -23,29 +70,34 @@ function SignUpVerificationComple() {
         ) : status === 'fail' ? (
           <div className="empty-content email-sent">
             <h1 className="error"><i className="bi bi-envelope-exclamation" /></h1>
-            <h3 className="text-1 mt-3">{`${error.message} 😥`}</h3>
-            <small className="text-2">The verification token is only valid for 30 minutes.</small>
-            <small className="text-2">Please, make sure to use it before it  expires.</small>
+            <h3 className="text-1 mt-3">{`${verifyResponse.error.message} 😥`}</h3>
+            <small className="text-2">The provided toke is invalid or expired. </small>
+            <small className="text-2">Please keep in mind that the verfication token is only valid for 30 minutes. </small>
             <div className="f-c-link-b w-auto py-3 d-flex justify-content-center align-items-center">
               <div className="d-flex flex-row">
                 <Button label="Get new Token" classes="primary-button mt-3" />
               </div>
             </div>
           </div>
-        ) : (
+        ) : status === 'success' ? (
           <div className="empty-content email-sent">
             <h1 className="email-sent"><i className="bi bi-envelope-check" /></h1>
             <h3 className="text-1 mt-3"> Account validated 👍</h3>
             <small className="text-2">Your account has been validated successfully</small>
-            <small className="text-2">You will be redirected shortly.</small>
+            <small className="text-2">
+              You will be redirected in
+              {' '}
+              <Time handleRedirect={handleRedirect} />
+            </small>
           </div>
-        )
+        ) : (<div />)
       }
     </div>
   );
 }
-SignUpVerificationComple.defaultProps = {
-  email: 'eric@gmail.com',
-};
 
-export default SignUpVerificationComple;
+const mapStateToProps = ({ user }) => ({
+  user,
+});
+
+export default connect(mapStateToProps, { verifyUser })(SignUpVerificationComple);

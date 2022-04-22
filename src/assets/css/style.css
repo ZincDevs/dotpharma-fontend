@@ -30,7 +30,8 @@ input {
 
 .text-1 {
   color: #797979;
-  font-family: "Dosis", sans-serif; }
+  font-family: "Dosis", sans-serif;
+  text-transform: capitalize; }
 
 .text-2 {
   color: #bbb;

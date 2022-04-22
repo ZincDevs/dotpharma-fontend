@@ -13,7 +13,7 @@ export default function Login() {
     <div className="loginContainer">
       <div className="row loginContent">
         <div className="col-12 right d-flex justify-content-center align-items-center">
-          <div className="c-f-content p-4">
+          <div className="c-f-content py-4 px-5">
             <ContentHead label="Sign In 🤞" />
             <div className="c-content-fields w-auto">
               <GoogleBtn />
