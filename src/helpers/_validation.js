@@ -13,9 +13,6 @@ const schemas = {
       numeric: 1,
       symbol: 1,
       requirementCount: 4,
-      messages: {
-        min: 'Password should be at least eight char long',
-      },
     }),
   }),
 };

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Button } from '../shared/Elements';
 
 function SignUpVerificationSent({ email }) {
   return (
@@ -13,7 +13,11 @@ function SignUpVerificationSent({ email }) {
         <div className="f-c-link-b w-auto py-3 d-flex justify-content-center align-items-center">
           <div className="d-flex flex-row">
             <span className="px-1">Did not reveive email? </span>
-            <Link to="/login">resend</Link>
+          </div>
+        </div>
+        <div className="f-c-link-b w-auto py-3 d-flex justify-content-center align-items-center">
+          <div className="d-flex flex-row">
+            <Button label="Resend" classes="primary-button mt-3" />
           </div>
         </div>
       </div>

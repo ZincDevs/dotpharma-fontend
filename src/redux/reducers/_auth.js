@@ -2,20 +2,20 @@
 import { USER_SIGNUP, USER_LOGIN } from '../actions/_types';
 
 export default (state = { signupResponse: { data: {} } }, action) => {
-  const { type, payload, status } = action;
+  const { type, status, ...rest } = action;
   switch (type) {
     case USER_SIGNUP:
       return {
         ...state,
         signupResponse: {
-          ...payload,
+          ...rest,
           status,
         },
       };
     case USER_LOGIN:
       return {
         ...state,
-        ...payload,
+        ...rest,
         status,
       };
     default:

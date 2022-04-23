@@ -18,12 +18,16 @@ function Text() {
   );
 }
 
-function Email({ label, handleOnChange, errors }) {
+function Email({
+  label, handleOnChange, errors, labeled,
+}) {
   return (
     <div className={`py-1 input-text-content w-auto ${errors && 'error'}`}>
+      {labeled && (
       <div className="px-3 py-1">
         <span>{label}</span>
       </div>
+      )}
       <div className="field w-auto">
         <input
           className="w-100 px-3 py-2"

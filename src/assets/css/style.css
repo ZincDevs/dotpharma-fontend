@@ -406,6 +406,11 @@ input {
 .email-sent .error {
   color: #c46363; }
 
+.v-comp-1 {
+  width: 400px; }
+  .v-comp-1 input {
+    font-size: .7em !important; }
+
 .doctor-container {
   background-color: #ecf6fe; }
 

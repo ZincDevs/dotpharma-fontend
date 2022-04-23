@@ -13,11 +13,10 @@ import {
 import { Button, GoogleBtn, ProgressBar } from '../shared/Elements';
 import Line from '../shared/Line';
 import { ContentHead } from '../shared/Contents';
-import { signUp } from '../../redux/actions/Auth';
+import { signUpAction } from '../../redux/actions';
 import VerificationSent from './VerificationSent';
 
-function SignUp({ auth: { signupResponse }, signUp }) {
-  const progressBar = useRef();
+function SignUp({ auth: { signupResponse }, signUpAction }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [agreeToTC, setAgreeToTC] = useState(false);
@@ -53,7 +52,7 @@ function SignUp({ auth: { signupResponse }, signUp }) {
       ValidateInputs();
     } else {
       const data = { email, password };
-      signUp(data);
+      signUpAction(data);
     }
   };
   const handleSignupSuccess = () => {
@@ -63,18 +62,12 @@ function SignUp({ auth: { signupResponse }, signUp }) {
   useEffect(() => {
     switch (signupResponse.status) {
       case 'success': {
-        progressBar.current.classList.add('hidden');
         handleSignupSuccess();
-        break;
-      }
-      case 'pending': {
-        progressBar.current.classList.remove('hidden');
         break;
       }
       case 'fail': {
         setEmailErrors(signupResponse.error.email && [{ ...signupResponse.error.email }]);
         setPasswordErrors(signupResponse.error.password && [{ ...signupResponse.error.password }]);
-        progressBar.current.classList.add('hidden');
         break;
       }
       default:
@@ -90,7 +83,7 @@ function SignUp({ auth: { signupResponse }, signUp }) {
       <div className="row loginContent">
         <div className="col-12 right d-flex justify-content-center align-items-center">
           <div className="c-f-content">
-            <ProgressBar reff={progressBar} />
+            {signupResponse.status === 'pending' && (<ProgressBar />)}
             <div className="c-f-i-content py-4 px-5">
               <ContentHead label="Sign Up 🤞" />
               <div className="c-content-fields w-auto">
@@ -125,4 +118,4 @@ const mapStateToProps = ({ auth }) => ({
   auth,
 });
 
-export default connect(mapStateToProps, { signUp })(SignUp);
+export default connect(mapStateToProps, { signUpAction })(SignUp);
