@@ -1,6 +1,10 @@
-import { logInAction, signUpAction } from './_auth';
-import { verifyUserAction } from './_user';
+import { logInAction, signUpAction, adminLogInAction } from './_auth';
+import { verifyUserAction, resentVerificationAction } from './_user';
 
 export {
-  logInAction, signUpAction, verifyUserAction,
+  logInAction,
+  signUpAction,
+  verifyUserAction,
+  resentVerificationAction,
+  adminLogInAction,
 };

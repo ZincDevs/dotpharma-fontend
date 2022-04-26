@@ -95,3 +95,21 @@
 .primary-button.disabled {
   background-color: lighten($pColor, $amount: 40);
 }
+
+.input-text-c {
+  input {
+    border-radius: 20px !important;
+  }
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  background-image: none !important;
+  border-color: #ced4da;
+  padding-right: 0.75em;
+}
+
+.form-control.is-valid, .was-validated .form-control:valid {
+  background-image: none !important;
+  border-color: #ced4da;
+  padding-right: 0.75em;
+}

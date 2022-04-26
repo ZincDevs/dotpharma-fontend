@@ -16,3 +16,29 @@ $color_accent_2: #48AC62;
 $poppins: "Poppins", sans-serif;
 $roboto: "Roboto", sans-serif;
 $dosis: "Dosis", sans-serif;
+
+$color_primary: $pColor;
+$color_primary_dark: rgb(35, 60, 113);;
+$color_primary_1: ligthen($pColor, 10%);
+$color_primary_2: #021e2ea7;
+$color_primary_light:#9CD1FF;
+
+$color_white: #FFFF;
+$color_white_1: #ffffff8e;
+$color_white_2: #cecece;
+$color_white_3: #fdfdfd;
+$color_white_4: #fbfbfb;
+
+$main_shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+$color_gray:rgb(85, 85, 85);
+$ripple-color:  lighten($color_accent_2, 1%);
+
+$banner-bg-1: url(../images/syringe.jpeg);
+
+
+// Fonts
+$valken: url(../fonts/Valken__.ttf);
+$dosis-font: url(../fonts/DosisSemiBold.ttf);
+$helvetica: url(../fonts/Helvetica.ttf);
+$s-s-regular: url(../fonts/SourceSansPro-Regular.ttf);
+$roboto-medium: url(../fonts/Roboto-Medium.ttf);

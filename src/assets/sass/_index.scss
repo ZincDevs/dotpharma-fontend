@@ -1,4 +1,5 @@
 body {
+  background-color: $sColor;
   margin: 0;
   font-family:
     -apple-system,
@@ -137,7 +138,6 @@ input {
 .error {
   .field {
     color: $dangerColor;
-    border: 1px solid $dangerColor;
   }
   .error-message {
     span {
@@ -155,4 +155,91 @@ input {
 }
 .hidden {
   visibility: hidden;
+}
+
+// .home-container {
+//   background-color: rgb(35, 60, 113);
+// }
+
+
+.d-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-size: cover;
+  @include ease-transition(all, 0.4s, ease-in-out);
+  &:hover {
+    filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+      brightness(104%) contrast(97%);
+    transform: scale(1.4);
+  }
+}
+.nav-icon {
+  width: 21px;
+  cursor: pointer;
+  &::after,
+  &::before,
+  .in-d {
+    background-color: $color-white-1;
+    border-radius: 10px;
+    content: "";
+    display: block;
+    height: 3.4px;
+    margin: 3px 0;
+    @include ease-transition(all, 0.5s, ease-in-out);
+  }
+  &:hover::before::after {
+    background-color: $color-accent-1;
+  }
+}
+
+.open-menu-btn {
+  &::before {
+    transform: translateY(6.7px) rotate(135deg);
+  }
+  &::after {
+    transform: translateY(-6.7px) rotate(-135deg);
+  }
+  .in-d {
+    transform: scale(0);
+  }
+}
+
+.open-menu {
+  clip-path: circle(150% at 100% 0%) !important;
+}
+
+.activepage {
+  ::after {
+    content: "";
+    background-color: $color-accent-1;
+    width: 20px;
+    height: 3px;
+    border-radius: 5px;
+    display: block;
+    animation: flash-width 2s infinite;
+  }
+}
+.active-menu {
+  border-radius: 2px;
+  background-color: rgba($color-primary-2, 0.04);
+  border-left: 2px solid $color-accent-1;
+  a {
+    color: $color-accent-1;
+  }
+}
+
+// Flaticon Icon
+@include flaticon_icon_m(35px, $color-white);
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    top: 220;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
 }

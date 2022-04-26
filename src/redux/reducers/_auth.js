@@ -1,7 +1,13 @@
 /* eslint-disable default-param-last */
-import { USER_SIGNUP, USER_LOGIN } from '../actions/_types';
+import { USER_SIGNUP, USER_LOGIN, ADMIN_USER_LOGIN } from '../actions/_types';
 
-export default (state = { signupResponse: { data: {} } }, action) => {
+const initialState = {
+  signupResponse: {},
+  loginResponse: {},
+  adminLoginResponse: {},
+};
+
+export default (state = initialState, action) => {
   const { type, status, ...rest } = action;
   switch (type) {
     case USER_SIGNUP:
@@ -15,8 +21,18 @@ export default (state = { signupResponse: { data: {} } }, action) => {
     case USER_LOGIN:
       return {
         ...state,
-        ...rest,
-        status,
+        loginResponse: {
+          ...rest,
+          status,
+        },
+      };
+    case ADMIN_USER_LOGIN:
+      return {
+        ...state,
+        adminLoginResponse: {
+          ...rest,
+          status,
+        },
       };
     default:
       return state;

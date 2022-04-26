@@ -11,6 +11,8 @@ import NotFound from './shared/NotFound';
 import Verification from './auth/VerificationComplete';
 import TermsAndConditions from './settings/TermsAndConditions';
 import PrivacyPolicy from './settings/PrivacyPolicy';
+import Services from './home/fragments/Services';
+import HealthTips from './home/fragments/HealthTips';
 
 function App() {
   return (
@@ -29,6 +31,9 @@ function App() {
         <Route path="/privacy-policy" key={key()} element={<PrivacyPolicy />} />
 
         <Route path="*" key={key()} element={<NotFound />} />
+
+        <Route path="/services" key={key()} element={<Services />} />
+        <Route path="/health-tips" key={key()} element={<HealthTips />} />
       </Routes>
     </BrowserRouter>
   );
