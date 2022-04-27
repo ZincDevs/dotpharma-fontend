@@ -17,9 +17,6 @@ import Layout from './layouts/Layout';
 import RequireAuth from './routes/RequireAuth';
 import RequireAuthHome from './routes/RequireAuthHome';
 import UserHome from './home/fragments/home/UserHome';
-// import ContactUs from './communication/contactus/ContactUs';
-
-{ /* <ContactUs /> */ }
 
 function App() {
   return (
