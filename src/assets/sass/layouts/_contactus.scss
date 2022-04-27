@@ -1,0 +1,502 @@
+.contactUs.c-open {
+  @each $screen in $all_small_screen {
+    @media #{$screen} {
+      background-color: white;
+      margin: 0;
+      width: 100%;
+      height: 100vh;
+    }
+  }
+
+  .icon4 {
+    @each $screen in $all_small_screen {
+      @media #{$screen} {
+        display: none !important;
+      }
+    }
+  }
+}
+.contactUs {
+  position: fixed;
+  z-index: 10;
+  right: 0;
+  bottom: 0;
+  margin: 0 20px 20px 0;
+
+  .contact-us-inner {
+    width: 400px;
+    position: relative;
+    padding-bottom: 1rem;
+    border-radius: 20px;
+    right: 0 !important;
+    background-color: $color-white;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(#a5a5a5, 0.2);
+    border-bottom: 3px solid $color-accent-1;
+    textarea{
+      outline: none;
+    }
+
+    @each $screen in $all_small_screen {
+      @media #{$screen} {
+        width: 100%;
+        // display: none;
+        // opacity: 0;
+        // height: 100vh;
+        min-height: calc(100vh, 5rem);
+        overflow: scroll;
+        border-radius: 0;
+
+        .top-side {
+          background-color: $color-accent-1;
+          height: 150px !important;
+          border-radius: 0 !important;
+          margin-bottom: 20px !important;
+          padding: 20px;
+          background-color: $color-primary !important;
+          height: 120px;
+          span {
+            font-size: 2em;
+            color: white;
+          }
+        }
+
+        .info-side {
+          margin-top: 20px !important;
+        }
+      }
+    }
+
+    .top-side {
+      background-color: $color-accent-1;
+      border-radius: 12px 12px 0 0;
+      padding: 20px;
+      height: 120px;
+
+      strong {
+        font-size: 26px;
+        text-transform: capitalize;
+        font-family: dosis;
+        color: $color-white !important;
+      }
+
+      p {
+        color: rgba($color-white, 0.6);
+      }
+    }
+
+    .c-st-12 {
+      max-height: calc(100vh - 15.5rem);
+      overflow-y: scroll;
+      padding: 0 0 30px 0px;
+    }
+
+    .c-st-12::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .c-st-12::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(233, 233, 233, 0.3);
+      border-radius: 0;
+    }
+
+    .c-st-12::-webkit-scrollbar-thumb {
+      border-radius: 0;
+      background-color: lighten($pColor, $amount: 40);
+    }
+
+    .info-side {
+      height: 100px;
+      margin-top: -50px !important;
+      background-color: white;
+      border-top: 2px solid $color-accent-1;
+      margin: 0 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 20px 0px rgba(#000000, 0.2);
+      position: absolute;
+      width: 90%;
+
+      .info-side-inner {
+        width: 100%;
+        justify-content: space-between;
+        padding: 0 10px;
+
+        img {
+          width: 50px;
+          height: 50px;
+        }
+
+        .social-m {
+          position: relative;
+          float: right;
+          right: 0;
+        }
+      }
+    }
+
+    .info-side-2 {
+      height: 140px;
+      background-color: $color-white;
+      border-top: 2px solid $color-accent-1;
+      margin: 0 20px;
+      border-radius: 5px;
+      margin-top: 70px !important;
+      box-shadow: 0px 0px 20px 0px rgba(#000000, 0.2);
+      z-index: -1 !important;
+
+      .info-side-inner {
+        width: 100%;
+        padding: 0 10px;
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+        }
+
+        .sms-m {
+          background-color: rgba($color-accent-1, 0.9);
+          padding: 10px;
+          margin-left: 10px;
+          border-radius: 0px 20px 20px 20px;
+
+          p {
+            font-size: 1.2rem;
+            color: $color-white !important;
+          }
+        }
+      }
+    }
+
+    .contact-side {
+      margin-top: 20px !important;
+      background-color: $color-white;
+      border-top: 2px solid rgba($color-accent-1, 0.5);
+      margin: 0 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 20px 0px rgba(#000000, 0.2);
+      padding: 0 0 20px 0;
+
+      .message-inner {
+        border: 1px solid rgb(223, 223, 223);
+        height: 190px;
+
+        textarea {
+          height: 100%;
+          width: 100%;
+          border: 0px;
+          padding: 10px;
+          resize: none;
+        }
+      }
+
+      .name-inner {
+        input {
+          height: 40px;
+          border: 0;
+          width: 100% !important;
+          border: 1px solid rgb(223, 223, 223);
+          padding: 0 10px;
+        }
+      }
+
+      .email-inner {
+        height: 40px;
+        justify-content: space-between;
+
+        input {
+          border: 0;
+          width: 100% !important;
+          border: 1px solid rgb(223, 223, 223);
+          padding: 0 10px;
+        }
+
+        .btn-send {
+          border-radius: 0px !important;
+          background-color: $color-accent-1;
+          color: $color-white;
+          padding: 6px 30px 30px;
+          border: 0;
+        }
+      }
+    }
+  }
+
+  .icon4 {
+    cursor: pointer;
+    z-index: 15 !important;
+    right: 0;
+    float: right;
+    border: thin solid $color-accent-1;
+
+    span {
+      color: $color-accent-1 !important;
+
+      i {
+        color: $color-accent-1 !important;
+      }
+    }
+  }
+
+  .open-contactus {
+    display: block;
+  }
+
+  .close-contactus {
+    // animation: bump-out 0.5s forwards;
+    //clip-path: circle(100%);
+  }
+}
+
+
+
+// .contactUs {
+//   position: fixed;
+//   z-index: 5;
+//   right: 0;
+//   bottom: 0;
+//   margin: 0 20px 20px 0;
+// }
+
+// .contact-us-inner {
+//   // border: 1px solid red;
+//   background-color: transparent;
+//   padding: 0;
+//   // height: 35rem;
+//   // padding: 10px;
+//   // // position: relative;
+//   // border-radius: 20px !important;
+//   // // z-index: -1;
+//   // z-index: 10;
+//   right: 0 !important;
+//   // background-color: red;
+//   // // display: none;
+//   // opacity: 0;
+//   margin-bottom: 20px;
+//   border-bottom: .4rem solid $color-accent-1;
+//   box-shadow: 0px 0px 10px 0px rgba(#a5a5a5, 0.2);
+//   // clip-path: circle(0% at 100% 100%);
+//   // @include ease-transition(all, 0.5s, ease-in-out);
+
+//   @each $screen in $all_small_screen {
+//     @media #{$screen} {
+//       width: 100%;
+//       // display: none;
+//       // opacity: 0;
+//       // height: 100vh;
+//       // overflow: scroll;
+//       // margin: 0px 0 100px 0 !important;
+//       border-radius: 0;
+//       // padding: 0 0 100px 0 !important;
+//       // .top-side {
+//       //   background-color: $color-accent-1;
+//       //   height: 150px !important;
+//       //   border-radius: 0 !important;
+//       //   margin-bottom: 20px !important;
+//       //   padding: 20px;
+//       //   background-color: $color-primary !important;
+//       //   height: 120px;
+//       //   p {
+//       //     display: none;
+//       //   }
+//       // }
+//       .info-side {
+//         margin-top: 20px !important;
+//       }
+//     }
+//   }
+
+//   textarea {
+//     outline: none !important;
+//   }
+
+//   .top-side {
+//     background-color: $color-accent-1;
+//     border-radius: 12px 12px 0 0;
+//     padding: 20px;
+//     height: 120px;
+//     strong {
+//       font-size: 26px;
+//       text-transform: capitalize;
+//       font-family: dosis;
+//       color: $color-white !important;
+//     }
+//     p {
+//       color: rgba($color-white, 0.6);
+//     }
+//   }
+
+//   .c-st-12 {
+//     max-height: 27.5rem;
+//     overflow-y: scroll;
+//     padding: 0 0 30px 0px;
+//     background-color: white;
+//   }
+//   .c-st-12::-webkit-scrollbar {
+//     width: 3px;
+//   }
+
+//   .c-st-12::-webkit-scrollbar-track {
+//     -webkit-box-shadow: inset 0 0 6px rgba(233, 233, 233, 0.3);
+//     border-radius: 0;
+//   }
+
+//   .c-st-12::-webkit-scrollbar-thumb {
+//     border-radius: 0;
+//     background-color: lighten($pColor, $amount: 40);
+//   }
+
+//   .info-side {
+//     height: 100px;
+//       margin-top: -50px !important;
+//       background-color: white;
+//       border-top: 2px solid $color-accent-1;
+//       margin: 0 20px;
+//       border-radius: 5px;
+//       box-shadow: 0px 0px 20px 0px rgba(#000000, 0.2);
+//       position: absolute;
+//       width: 95%;
+
+//     .info-side-inner {
+//       width: 100%;
+//       border: 1px solid red;
+//       justify-content: space-between;
+//       padding: 0 10px;
+
+//       img {
+//         width: 50px;
+//         height: 50px;
+//       }
+//       .social-m {
+//         position: relative;
+//         float: right;
+//         right: 0;
+//         border: 1px solid red;
+//       }
+//     }
+//   }
+//   .info-side-2 {
+//     height: 140px;
+//     background-color: $color-white;
+//     border-top: 2px solid $color-accent-1;
+//     margin: 0 20px;
+//     border-radius: 5px;
+//     margin-top: 70px !important;
+//     box-shadow: 0px 0px 20px 0px rgba(#000000, 0.2);
+//     z-index: -1 !important;
+//     .info-side-inner {
+//       justify-content: space-between;
+//       padding: 0 10px;
+
+//       img {
+//         width: 50px;
+//         height: 50px;
+//         border-radius: 50%;
+//       }
+//       .sms-m {
+//         background-color: rgba($color-accent-1, 0.9);
+//         padding: 10px;
+//         margin-left: 10px;
+//         border-radius: 0px 20px 20px 20px;
+//         p {
+//           font-size: 1.3em;
+//           color: $color-white !important;
+//         }
+//       }
+//     }
+//   }
+
+//   .contact-side {
+//     margin-top: 20px !important;
+//     background-color: $color-white;
+//     border-top: 2px solid rgba($color-accent-1, 0.5);
+//     margin: 0 20px;
+//     border-radius: 5px;
+//     box-shadow: 0px 0px 20px 0px rgba(#000000, 0.2);
+//     padding: 0 0 20px 0;
+//     .message-inner {
+//       border: 1px solid rgb(223, 223, 223);
+//       height: 190px;
+//       textarea {
+//         height: 100%;
+//         width: 100%;
+//         border: 0px;
+//         padding: 10px;
+//         resize: none;
+//       }
+//     }
+//     .name-inner {
+//       input {
+//         height: 40px;
+//         border: 0;
+//         width: 100% !important;
+//         border: 1px solid rgb(223, 223, 223);
+//         padding: 0 10px;
+//       }
+//     }
+//     .email-inner {
+//       height: 40px;
+//       justify-content: space-between;
+//       input {
+//         border: 0;
+//         width: 100% !important;
+//         border: 1px solid rgb(223, 223, 223);
+//         padding: 0 10px;
+//       }
+//       .btn-send {
+//         border-radius: 0px !important;
+//         background-color: $color-accent-1;
+//         color: $color-white;
+//         padding: 6px 30px 30px;
+//         border: 0;
+//       }
+//     }
+//   }
+// }
+
+// .icon4 {
+//   cursor: pointer;
+//   // position: absolute;
+//   z-index: 6 !important;
+//   right: 0;
+//   float: right;
+//   span {
+//     color: $color-accent-1 !important;
+//     i {
+//       color: $color-accent-1 !important;
+//     }
+//   }
+//   @each $screen in $all_small_screen {
+//     @media #{$screen} {
+//       display: none !important;
+//     }
+//   }
+// }
+
+// .open-contactus {
+//   display: block;
+// }
+
+// .close-contactus {
+//   // animation: bump-out 0.5s forwards;
+//   //clip-path: circle(100%);
+// }
+
+
+// .contactUs.open-contactus-2 {
+//   @each $screen in $all_small_screen {
+//     @media #{$screen} {
+//       margin: 0;
+//       padding: 0;
+//       width: 100%;
+//       height: 100vh;
+//       position: fixed;
+//       z-index: 3;
+//       background-color: $color-primary !important;
+//       //  // position: absolute;contact-us-btn
+//       //  #contact-us-btn{
+//       //    position: fixed;
+//       //  }
+//     }
+//   }
+// }

@@ -1,25 +1,30 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable brace-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Validate } from '../../helpers';
 import {
-  Email, Password, TCPPAgree,
+  Email, Password, TCPPAgree, Text,
 } from '../shared/Input';
 import { Button, GoogleBtn, ProgressBar } from '../shared/Elements';
 import Line from '../shared/Line';
 import { ContentHead } from '../shared/Contents';
+import { signUpAction } from '../../redux/actions';
+import VerificationSent from './VerificationSent';
 
-export default function SignUp() {
-  const progressBar = useRef();
+function SignUp({ auth: { signupResponse }, signUpAction }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [agreeToTC, setAgreeToTC] = useState(false);
   const [emailErrors, setEmailErrors] = useState(null);
   const [passwordErrors, setPasswordErrors] = useState(null);
   const [agreeErrors, setAgreeErrors] = useState(null);
+  const [signupSuccess, setSignupSuccess] = useState();
+  const form = useRef();
   const canContinue = !!(!emailErrors && !passwordErrors && email && password && agreeToTC);
 
   const handleEmailChange = e => {
@@ -44,27 +49,65 @@ export default function SignUp() {
   };
   const handleSignUp = e => {
     e.preventDefault();
-    if (!canContinue) { ValidateInputs(); }
+    if (signupResponse.status !== 'pending') {
+      if (!canContinue) {
+        ValidateInputs();
+      } else {
+        const data = { email, password };
+        signUpAction(data);
+      }
+    }
   };
+  const handleSignupSuccess = () => {
+    setSignupSuccess(true);
+  };
+
+  useEffect(() => {
+    switch (signupResponse.status) {
+      case 'success': {
+        handleSignupSuccess();
+        break;
+      }
+      case 'fail': {
+        setEmailErrors(signupResponse.error.email && [{ ...signupResponse.error.email }]);
+        setPasswordErrors(signupResponse.error.password && [{ ...signupResponse.error.password }]);
+        break;
+      }
+      default:
+    }
+  }, [signupResponse]);
+
+  if (signupSuccess) {
+    return (<VerificationSent email={email} />);
+  }
 
   return (
     <div className="signUpContainer loginContainer">
       <div className="row loginContent">
         <div className="col-12 right d-flex justify-content-center align-items-center">
           <div className="c-f-content">
-            <ProgressBar ref={progressBar} />
+            {signupResponse.status === 'pending' && (<ProgressBar />)}
             <div className="c-f-i-content py-4 px-5">
               <ContentHead label="Sign Up 🤞" />
               <div className="c-content-fields w-auto">
-                <form onSubmit={handleSignUp}>
-                  <Email handleOnChange={handleEmailChange} value={email} errors={emailErrors} />
+                <form
+                  onSubmit={handleSignUp}
+                  className="needs-validation"
+                  ref={form}
+                >
+                  <Email
+                    handleOnChange={handleEmailChange}
+                    value={email}
+                    errors={emailErrors}
+                    labeled
+                  />
                   <Password
                     handleOnChange={handlePasswordChange}
                     value={password}
                     errors={passwordErrors}
                   />
                   <TCPPAgree handleAgree={handleAgree} errors={agreeErrors} />
-                  <Button label="Sign Up" classes={`primary-button ${canContinue ? '' : 'disabled'} mt-3`} />
+                  <Button label="Sign Up" classes={`primary-button ${(!canContinue || signupResponse.status === 'pending') && 'disabled'} mt-3`} />
                   <Line label="Or" />
                   <GoogleBtn />
                 </form>
@@ -82,3 +125,9 @@ export default function SignUp() {
     </div>
   );
 }
+
+const mapStateToProps = ({ auth }) => ({
+  auth,
+});
+
+export default connect(mapStateToProps, { signUpAction })(SignUp);

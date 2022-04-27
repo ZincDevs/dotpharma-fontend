@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-lone-blocks */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -12,21 +13,32 @@ import { Link } from 'react-router-dom';
 
 function Text() {
   return (
-    <div className="input-text-content">
-      <input type="text" required />
+    <div className="col-12 input-text-c">
+      <label htmlFor="username" className="form-label">Username</label>
+      <div className="input-group has-validation">
+        <input type="text" className="form-control" id="username" placeholder="Username" required />
+        <span className="input-group-text">@</span>
+        <div className="invalid-feedback">
+          Your username is required.
+        </div>
+      </div>
     </div>
   );
 }
 
-function Email({ label, handleOnChange, errors }) {
+function Email({
+  value, label, handleOnChange, errors, labeled,
+}) {
   return (
-    <div className={`py-1 input-text-content w-auto ${errors && 'error'}`}>
+    <div className={`col-12 py-1 has-validation input-text-content w-auto ${errors && 'error'}`}>
+      {labeled && (
       <div className="px-3 py-1">
         <span>{label}</span>
       </div>
+      )}
       <div className="field w-auto">
         <input
-          className="w-100 px-3 py-2"
+          className={`${(!errors && value) ? 'is-valid' : 'is-invalid'} w-100 px-3 py-2 form-control`}
           type="email"
           name="email"
           onChange={handleOnChange}
@@ -35,9 +47,9 @@ function Email({ label, handleOnChange, errors }) {
         />
       </div>
       {errors && (
-        <div className="d-flex flex-column px-3 pt-2 error-message">
-          {errors.map(({ message }) => (<span key={key()}>{message}</span>))}
-        </div>
+      <div className="d-flex flex-column px-3 pt-2 error-message">
+        {errors.map(({ message }) => (<span key={key()}>{message}</span>))}
+      </div>
       )}
     </div>
   );
@@ -48,20 +60,20 @@ Email.defaultProps = {
 };
 
 function Password({
-  label, handleOnChange, errors,
+  value, label, handleOnChange, errors,
 }) {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
   return (
-    <div className={`py-1 input-text-content w-auto ${errors && 'error'}`}>
+    <div className={`col-12 py-1 input-text-content w-auto has-validation ${errors && 'error'}`}>
       <div className="px-3 py-1">
         <span>{label}</span>
       </div>
-      <div className="field w-auto d-flex flex-row">
+      <div className="field w-auto w-auto d-flex flex-row">
         <input
-          className="w-auto px-3 py-2 flex-grow-1"
+          className={`${(!errors && value) ? 'is-valid' : 'is-invalid'} w-auto px-3 py-2 flex-grow-1 form-control`}
           type={showPassword ? 'text' : 'password'}
           onChange={handleOnChange}
           name="password"
@@ -83,7 +95,6 @@ function Password({
 
 Password.defaultProps = {
   label: 'Password',
-  // errors: [{ message: 'Incorrect password!' }],
   success: true,
 };
 
@@ -121,6 +132,27 @@ function TCPPAgree({ handleAgree, errors }) {
   );
 }
 
+function TCPRemember({ handleRemember, errors }) {
+  return (
+    <div className={`input-text-content pt-2 d-flex flex-column ${errors && 'error'}`}>
+      <div className="d-flex flex-row">
+        <div className="td-st pt-2">
+          <label className="agree-container">
+            <input type="checkbox" onChange={handleRemember} />
+            <span className="checkmark" />
+          </label>
+        </div>
+        <span className="pt-2">Remember me</span>
+      </div>
+      {errors && (
+        <div className="d-flex flex-column px-3 pt-2 error-message">
+          {errors.map(({ message }) => (<span key={key()}>{message}</span>))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export {
-  Text, Email, Password, Submit, TCPPAgree,
+  Text, Email, Password, Submit, TCPPAgree, TCPRemember,
 };
