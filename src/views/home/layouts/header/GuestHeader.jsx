@@ -7,7 +7,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
-import Logo from '../../shared/Logo';
+import Logo from '../../../shared/Logo';
 
 export default function GuestHeader({ activeMenu }) {
   useEffect(() => {
@@ -24,58 +24,47 @@ export default function GuestHeader({ activeMenu }) {
       }
     });
   }, []);
+  const handleOpenMenu = () => {
+    if ($('.nav-menu-lists')[0].classList.contains('open-menu')) {
+      $('.nav-menu-lists')[0].classList.remove('open-menu');
+      $('.nav-icon')[0].classList.remove('open-menu-btn');
+    } else {
+      $('.nav-menu-lists')[0].classList.add('open-menu');
+      $('.nav-icon')[0].classList.add('open-menu-btn');
+    }
+  };
   return (
     <div>
       <header id="nav-bar-header" className="main_menu">
         <div className="container">
-          <div className="d-flex flex-row justify-content-between align-items-center">
+          <div className="df py-3 py-md-2 d-flex flex-row justify-content-between align-items-center">
             <div className="logo d-flex justify-content-center align-items-center" href="#">
               <Logo with={40} height={40} />
               <span>DOTPHARMA</span>
             </div>
             <div className="menu-btn d-flex d-md-none justify-content-center align-items-center">
-              <div id="menu-btn-action" className="nav-icon">
+              <div onClick={handleOpenMenu} id="menu-btn-action" className="nav-icon">
                 <span className="in-d" />
               </div>
             </div>
             <nav className="nav-links pt-3 d-none d-md-flex justify-content-center align-items-center">
               <ul>
                 <li className={activeMenu === 'home' ? 'activepage' : ''}>
-                  <a
-                    onClick={() => {}}
-                  >
+                  <Link to="/">
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className={activeMenu === 'service' ? 'activepage' : ''}>
-                  <a
-                    onClick={() => {}}
-                  >
+                  <Link to="/services">
                     Services
-                  </a>
+                  </Link>
                 </li>
                 <li
-                  className={activeMenu === 'portifolio' ? 'activepage' : ''}
+                  className={activeMenu === 'health-tips' ? 'activepage' : ''}
                 >
-                  <a
-                    onClick={() => {}}
-                  >
-                    Portfolio
-                  </a>
-                </li>
-                <li className={activeMenu === 'blog' ? 'activepage' : ''}>
-                  <a
-                    onClick={() => {}}
-                  >
-                    Blog
-                  </a>
-                </li>
-                <li className={activeMenu === 'about' ? 'activepage' : ''}>
-                  <a
-                    onClick={() => {}}
-                  >
-                    About
-                  </a>
+                  <Link to="/health-tips">
+                    Health Tips
+                  </Link>
                 </li>
                 <li>
                   <Link
@@ -92,34 +81,35 @@ export default function GuestHeader({ activeMenu }) {
       </header>
       <nav
         id="nav-menu-lists"
-        className="nav-menu-lists close-menu nav-menu-lists-scrolled"
+        className="d-flex d-md-none nav-menu-lists close-menu nav-menu-lists-scrolled"
       >
         <div className="container nav-menu-content">
           <nav className="nav-links-menu">
             <ul>
-              <li>
-                <a href="#">Home</a>
+              <li className={activeMenu === 'home' ? 'activepage' : ''}>
+                <Link to="/">
+                  Home
+                </Link>
               </li>
-              <li className="active-menu">
-                <a href="#">Services</a>
+              <li className={activeMenu === 'service' ? 'activepage' : ''}>
+                <Link to="/services">
+                  Services
+                </Link>
+              </li>
+              <li
+                className={activeMenu === 'health-tips' ? 'activepage' : ''}
+              >
+                <Link to="/health-tips">
+                  Health Tips
+                </Link>
               </li>
               <li>
-                <a href="#">Portfolio</a>
-              </li>
-              <li>
-                <a href="#">Blog</a>
-              </li>
-              <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a
-                  href="#"
+                <Link
+                  to="/login"
                   className="btn-1"
-                  onClick={() => {}}
                 >
-                  Talk to us
-                </a>
+                  Log In
+                </Link>
               </li>
             </ul>
           </nav>

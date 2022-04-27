@@ -1,10 +1,5 @@
 .loginContainer {
-  background: $sColor url(../images/BD1.png) center/85em 50em no-repeat;
-  // background-color: $sColor;
-  // background-image: url(../images/BD1.png);
-  // background-size: contain;
-  // background-repeat: no-repeat;
-  // background-position: bottom;
+  @extend %login-bg-gr-1;
   padding: 0;
 
   .row {

@@ -20,7 +20,7 @@ $dosis: "Dosis", sans-serif;
 $color_primary: $pColor;
 $color_primary_dark: rgb(35, 60, 113);;
 $color_primary_1: ligthen($pColor, 10%);
-$color_primary_2: #021e2ea7;
+$color_primary_2: $pColor;
 $color_primary_light:#9CD1FF;
 
 $color_white: #FFFF;
@@ -30,10 +30,14 @@ $color_white_3: #fdfdfd;
 $color_white_4: #fbfbfb;
 
 $main_shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+$second_shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
 $color_gray:rgb(85, 85, 85);
 $ripple-color:  lighten($color_accent_2, 1%);
 
 $banner-bg-1: url(../images/syringe.jpeg);
+$banner-bg-2: url(../images/pills.jpeg);
+$banner-bg-3: url(../images/doc.jpeg);
+$products-bg-1: url(../images/pills.jpeg);
 
 
 // Fonts

@@ -1,8 +1,9 @@
+/* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
   Email, Password, TCPRemember,
 } from '../shared/Input';
@@ -10,12 +11,18 @@ import { Button, GoogleBtn, ProgressBar } from '../shared/Elements';
 import Line from '../shared/Line';
 import { ContentHead } from '../shared/Contents';
 import { logInAction } from '../../redux/actions';
+import useAuth from '../hooks/useAuth';
 
 function Login({ auth: { loginResponse }, logInAction }) {
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailErrors, setEmailErrors] = useState(null);
   const [passwordErrors, setPasswordErrors] = useState(null);
+
   const handleEmailChange = e => {
     setEmail(e.target.value);
   };
@@ -27,11 +34,19 @@ function Login({ auth: { loginResponse }, logInAction }) {
     const data = { email, password };
     logInAction(data);
   };
+  const handleLoginSuccess = token => {
+    setAuth({ email, password, token });
+    setTimeout(() => {
+      navigate(from, { replace: true });
+    }, 3000);
+  };
+
   useEffect(() => {
     switch (loginResponse.status) {
       case 'success': {
         setEmailErrors(undefined);
         setPasswordErrors(undefined);
+        handleLoginSuccess(loginResponse.token);
         break;
       }
       case 'fail': {
@@ -42,6 +57,7 @@ function Login({ auth: { loginResponse }, logInAction }) {
       default:
     }
   }, [loginResponse]);
+
   return (
     <div className="loginContainer">
       <div className="row loginContent">
@@ -52,8 +68,6 @@ function Login({ auth: { loginResponse }, logInAction }) {
               <ContentHead label="Sign In 🤞" />
               <div className="c-content-fields w-auto">
                 <form onSubmit={handleLogin}>
-                  <GoogleBtn />
-                  <Line label="Or Sign In with Email" />
                   <Email
                     handleOnChange={handleEmailChange}
                     value={email}
@@ -70,6 +84,8 @@ function Login({ auth: { loginResponse }, logInAction }) {
                     <Link to="/login/password-reset">Forgot password?</Link>
                   </div>
                   <Button label="Sign In" classes="primary-button" />
+                  <Line label="Or Sign In with Email" />
+                  <GoogleBtn />
                 </form>
               </div>
               <div className="f-c-link-b w-auto py-3 d-flex justify-content-center align-items-center">

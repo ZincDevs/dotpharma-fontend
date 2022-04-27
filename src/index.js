@@ -4,15 +4,25 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './assets/css/style.css';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './views/App';
 import store from './redux';
+import { AuthProvider } from './context/AuthProvider';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Provider>,
+  <React.StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <Provider store={store}>
+          <Routes>
+            <Route path="/*" element={<App />} />
+          </Routes>
+        </Provider>
+      </AuthProvider>
+    </BrowserRouter>
+
+  </React.StrictMode>
+  ,
 );
