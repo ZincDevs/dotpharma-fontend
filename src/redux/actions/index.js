@@ -1,5 +1,5 @@
 import { logInAction, signUpAction, adminLogInAction } from './_auth';
-import { verifyUserAction, resentVerificationAction } from './_user';
+import { verifyUserAction, resentVerificationAction, getAllUsersAction } from './_user';
 
 export {
   logInAction,
@@ -7,4 +7,5 @@ export {
   verifyUserAction,
   resentVerificationAction,
   adminLogInAction,
+  getAllUsersAction,
 };
