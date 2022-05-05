@@ -17,7 +17,7 @@ function ProfilePic({ profile: { pic, name } }) {
       {pic ? (
         <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
       ) : (
-        <span className="p-3 rounded-circle profile-pic-n-p">
+        <span className="p-2 rounded-circle profile-pic-n-p">
           <strong>{profileIcon}</strong>
         </span>
       )}
