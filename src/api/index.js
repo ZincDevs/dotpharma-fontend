@@ -1,9 +1,11 @@
-import { logIn, signUp } from './_auth';
-import { verifyUser, resentVerification } from './_user';
+import { logIn, signUp, refreshToken } from './_auth';
+import { verifyUser, resentVerification, getAllUsers } from './_user';
 
 export {
   logIn,
   signUp,
   verifyUser,
   resentVerification,
+  refreshToken,
+  getAllUsers,
 };
