@@ -26,10 +26,12 @@
         h1{
           color: $sColor;
           font-size: 3em;
+          border: 1px solid red;
         }
         p {
           font-size: 2em;
           color: white;
+          border: 1px solid red;
           font-family: $dosis;
           span {
             text-transform: uppercase;
@@ -42,6 +44,7 @@
         h4 {
           color: white;
           font-family: $dosis;
+          border: 1px solid red;
           font-size: 2em;
         }
       }
