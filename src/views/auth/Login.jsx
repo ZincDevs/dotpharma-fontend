@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
   Email, Password, TCPRemember,
@@ -11,13 +11,16 @@ import { Button, GoogleBtn, ProgressBar } from '../shared/Elements';
 import Line from '../shared/Line';
 import { ContentHead } from '../shared/Contents';
 import { logInAction } from '../../redux/actions';
-import useAuth from '../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
+import { CLEAR_LOGIN_STATE } from '../../redux/actions/_types';
 
 function Login({ auth: { loginResponse }, logInAction }) {
+  let controller;
+  const dispatch = useDispatch();
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+  const from = location?.state?.from?.pathname || '/dashboard';
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailErrors, setEmailErrors] = useState(null);
@@ -32,10 +35,10 @@ function Login({ auth: { loginResponse }, logInAction }) {
   const handleLogin = e => {
     e.preventDefault();
     const data = { email, password };
-    logInAction(data);
+    logInAction(data, controller);
   };
-  const handleLoginSuccess = token => {
-    setAuth({ email, password, token });
+  const handleLoginSuccess = response => {
+    setAuth({ email, password, ...response });
     setTimeout(() => {
       navigate(from, { replace: true });
     }, 3000);
@@ -46,17 +49,25 @@ function Login({ auth: { loginResponse }, logInAction }) {
       case 'success': {
         setEmailErrors(undefined);
         setPasswordErrors(undefined);
-        handleLoginSuccess(loginResponse.token);
+        handleLoginSuccess(loginResponse);
         break;
       }
       case 'fail': {
-        setEmailErrors(loginResponse.error.email && [{ ...loginResponse.error.email }]);
-        setPasswordErrors(loginResponse.error.password && [{ ...loginResponse.error.password }]);
+        setEmailErrors(loginResponse?.error?.email && [{ ...loginResponse.error.email }]);
+        setPasswordErrors(loginResponse?.error?.password && [{ ...loginResponse.error.password }]);
         break;
       }
       default:
     }
   }, [loginResponse]);
+
+  useEffect(() => {
+    controller = new AbortController();
+    return () => {
+      dispatch({ type: CLEAR_LOGIN_STATE });
+      controller.abort();
+    };
+  }, []);
 
   return (
     <div className="loginContainer">
@@ -64,7 +75,7 @@ function Login({ auth: { loginResponse }, logInAction }) {
         <div className="col-12 right d-flex justify-content-center align-items-center">
           <div className="c-f-content">
             {loginResponse.status === 'pending' && (<ProgressBar />)}
-            <div className="py-4 px-5">
+            <div className="c-f-i-content py-4 px-5">
               <ContentHead label="Sign In 🤞" />
               <div className="c-content-fields w-auto">
                 <form onSubmit={handleLogin}>
