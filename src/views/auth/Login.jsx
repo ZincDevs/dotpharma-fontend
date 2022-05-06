@@ -20,7 +20,7 @@ function Login({ auth: { loginResponse }, logInAction }) {
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state?.from?.pathname || '/dashboard';
+  const from = location?.state?.from?.pathname || '/';
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailErrors, setEmailErrors] = useState(null);
@@ -38,10 +38,8 @@ function Login({ auth: { loginResponse }, logInAction }) {
     logInAction(data, controller);
   };
   const handleLoginSuccess = response => {
-    setAuth({ email, password, ...response });
-    setTimeout(() => {
-      navigate(from, { replace: true });
-    }, 3000);
+    setAuth({ ...response });
+    navigate(from, { replace: true });
   };
 
   useEffect(() => {
