@@ -5,19 +5,22 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import QueryString from 'query-string';
-import { useLocation, Navigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ProgressBar } from '../shared/Elements';
 import Loader from '../shared/Loader';
 import { verifyUserAction } from '../../redux/actions';
 import VerificationFailed from './VerificationFailed';
+import useAuth from '../../hooks/useAuth';
 
 function SignUpVerificationComple({ verifyUserAction, user: { verifyResponse } }) {
   const [status, setStatus] = useState('pending');
-  const [done, setDone] = useState(false);
+  const { setAuth } = useAuth();
   const location = useLocation();
-  const handleRedirect = () => {
+  const navigate = useNavigate();
+  const handleRedirect = response => {
     setTimeout(() => {
-      setDone(true);
+      setAuth({ ...response });
+      navigate('/');
     }, 8000);
   };
 
@@ -29,7 +32,7 @@ function SignUpVerificationComple({ verifyUserAction, user: { verifyResponse } }
     switch (verifyResponse.status) {
       case 'success': {
         setStatus('success');
-        handleRedirect();
+        handleRedirect(verifyResponse);
         break;
       }
       case 'pending': {
@@ -44,11 +47,6 @@ function SignUpVerificationComple({ verifyUserAction, user: { verifyResponse } }
     }
   }, [verifyResponse]);
 
-  if (done) {
-    return (
-      <Navigate to="/login" />
-    );
-  }
   if (status === 'fail') {
     return (<VerificationFailed />);
   }
