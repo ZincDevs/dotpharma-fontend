@@ -62,7 +62,7 @@ function VericationFailed({
         <div className="empty-content email-sent d-flex p-3">
           <div className="v-c-failed p-4 d-flex flex-column text-center justify-content-center align-items-center">
             <h1 className="error"><i className="bi bi-envelope-exclamation" /></h1>
-            <h3 className="text-1 mt-3">{`${verifyResponse.error.message} 😥`}</h3>
+            <h3 className="text-1 mt-3">Verification failed 😥</h3>
             <small className="text-2 px-4 text-center">The provided token is invalid or expired. </small>
             <small className="text-2 px-4 text-center">Please keep in mind that the verfication token is only valid for 5 minutes. </small>
             <div className="v-comp-1 d-flex justify-content-center align-items-center mt-3">
