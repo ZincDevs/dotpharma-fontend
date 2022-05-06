@@ -1060,6 +1060,37 @@ input {
     height: 32px;
   }
 }
+.splash h3 {
+  position: relative;
+  color: #2B8DD0;
+  text-transform: uppercase;
+  font-weight: 300;
+  display: flex;
+  animation: intro1 0.4s forwards linear;
+  font-size: 0.7em;
+}
+.splash h3 strong {
+  display: flex;
+  margin-left: 4px;
+  font-weight: 800;
+  color: #48AC62;
+}
+.splash h3 strong::before, .splash h3 strong::after {
+  content: ".";
+  display: flex;
+  font-family: dosis !important;
+}
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .splash h3 {
+    font-size: 1.9vw;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .splash h3 {
+    font-size: 1.9vw;
+  }
+}
+
 .empty-container {
   background-color: #ecf6fe;
 }
