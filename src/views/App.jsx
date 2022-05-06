@@ -5,7 +5,7 @@ import key from 'uniqid';
 import Login from './auth/Login';
 import AdminLogin from './admin/auth/Login';
 import Signup from './auth/Signup';
-import PasswordReset from './auth/PasswordReset';
+import ForgotPassword from './auth/ForgotPassword';
 import NotFound from './shared/NotFound';
 // import Empty from './shared/Empty';
 import Verification from './auth/VerificationComplete';
@@ -37,7 +37,7 @@ function App() {
 
         {/* Public Routes for users */}
         <Route path="/login" key={key()} element={<Login />} />
-        <Route path="/login/password-reset" key={key()} element={<PasswordReset />} />
+        <Route path="/login/forgot-password" key={key()} element={<ForgotPassword />} />
         <Route path="/signup" key={key()} element={<Signup />} />
         <Route path="/signup/verify" key={key()} element={<Verification />} />
         <Route path="/terms-and-conditions" key={key()} element={<TermsAndConditions />} />
@@ -63,9 +63,8 @@ function App() {
           <Route path="/dashboard" key={key()} element={<Dashboard />}>
             {/* Private routes for admin */}
             {/* <Route element={<RequireAuthAdmin />}> */}
-            <Route path="/dashboard" key={key()} element={<AdminHome />} />
-            <Route path="/dashboard/home" key={key()} element={<AdminHome />} />
             <Route element={<RequireAuthAdmin />}>
+              <Route path="/dashboard/home" key={key()} element={<AdminHome />} />
               <Route path="/dashboard/users" key={key()} element={<AdminUsers />} />
               <Route path="/dashboard/medicines" key={key()} element={<AdminMedicines />} />
               <Route path="/dashboard/pharmacies" key={key()} element={<AdminPharmacies />} />
@@ -76,7 +75,7 @@ function App() {
         </Route>
 
         <Route path="*" key={key()} element={<NotFound />} />
-        <Route path="/unauthorized" key={key()} element={<NotFound />} />
+        {/* <Route path="/unauthorized" key={key()} element={<NotFound />} /> */}
 
       </Route>
     </Routes>
