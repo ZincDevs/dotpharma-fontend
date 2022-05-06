@@ -34,3 +34,35 @@
     height: 32px;
   }
 }
+
+.splash {
+  h3 {
+    position: relative;
+    color: $pColor;
+    text-transform: uppercase;
+    font-weight: 300;
+    display: flex;
+    animation: intro1 0.4s forwards linear;
+    font-size: .7em;
+
+    strong {
+      display: flex;
+      margin-left: 4px;
+      font-weight: 800;
+      color: $color-accent-2;
+
+      &::before,
+      &::after {
+        content: ".";
+        display: flex;
+        font-family: dosis !important;
+      }
+    }
+
+    @each $screen in $all_medium_screen {
+      @media #{$screen} {
+        font-size: 1.9vw;
+      }
+    }
+  }
+}
