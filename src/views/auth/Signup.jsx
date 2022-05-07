@@ -85,38 +85,41 @@ function SignUp({ auth: { signupResponse }, signUpAction }) {
     <div className="signUpContainer loginContainer">
       <div className="row loginContent">
         <div className="col-12 right d-flex justify-content-center align-items-center">
-          <div className="c-f-content">
-            {signupResponse.status === 'pending' && (<ProgressBar />)}
-            <div className="c-f-i-content py-4 px-5">
-              <ContentHead label="Sign Up 🤞" />
-              <div className="c-content-fields w-auto">
-                <form
-                  onSubmit={handleSignUp}
-                  className="needs-validation"
-                  ref={form}
-                >
-                  <Email
-                    handleOnChange={handleEmailChange}
-                    value={email}
-                    errors={emailErrors}
-                    labeled
-                  />
-                  <Password
-                    handleOnChange={handlePasswordChange}
-                    value={password}
-                    errors={passwordErrors}
-                  />
-                  <TCPPAgree handleAgree={handleAgree} errors={agreeErrors} />
-                  <Button label="Sign Up" classes={`primary-button ${(!canContinue || signupResponse.status === 'pending') && 'disabled'} mt-3`} />
-                  <Line label="Or" />
-                  <GoogleBtn />
-                </form>
-              </div>
-              <div className="f-c-link-b w-auto py-3 d-flex justify-content-center align-items-center">
-                <div className="d-flex flex-row">
-                  <span className="px-1">Already have an account? </span>
-                  <Link to="/login">Sign In</Link>
+          <div className="c-f-u-content">
+            <ContentHead />
+            <div className="c-f-content">
+              {signupResponse.status === 'pending' && (<ProgressBar />)}
+              <div className="c-f-i-content py-4 px-5">
+                <div className="c-content-fields w-auto">
+                  <h6>Sign Up 🤞</h6>
+                  <form
+                    onSubmit={handleSignUp}
+                    className="needs-validation"
+                    ref={form}
+                  >
+                    <Email
+                      handleOnChange={handleEmailChange}
+                      value={email}
+                      errors={emailErrors}
+                      labeled
+                    />
+                    <Password
+                      handleOnChange={handlePasswordChange}
+                      value={password}
+                      errors={passwordErrors}
+                    />
+                    <TCPPAgree handleAgree={handleAgree} errors={agreeErrors} />
+                    <Button label="Sign Up" classes={`primary-button ${(!canContinue || signupResponse.status === 'pending') && 'disabled'} mt-3`} />
+                    <Line label="Or" />
+                    <GoogleBtn />
+                  </form>
                 </div>
+              </div>
+            </div>
+            <div className="f-c-link-b w-auto py-3 d-flex justify-content-center align-items-center">
+              <div className="d-flex flex-row">
+                <span className="px-1">Already have an account? </span>
+                <Link to="/login">Sign In</Link>
               </div>
             </div>
           </div>
