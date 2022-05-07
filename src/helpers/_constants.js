@@ -8,6 +8,7 @@ export default {
   get_all_users_api: '/user/allusers',
   r_psw_rese_api: '/user/request-password-reset',
   r_r_psw_rese_api: '/user/resend-password-reset',
-  verify_user_api: token => `/user/activateuser/${token}`,
+  apply_psw_reset_api: session => `/user/apply-password-reset/${session}`,
+  verify_user_api: session => `/user/activateuser/${session}`,
   resend_verification_api: '/user/resendverification',
 };
