@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, ProgressBar } from '../shared/Elements';
 import Loader from '../shared/Loader';
 import { resendPasswordReset } from '../../api/_user';
@@ -9,15 +9,27 @@ function PasswordResetSent({
   email,
 }) {
   const [status, setStatus] = useState();
-  const handleResend = () => {
-    resendPasswordReset({ email }, err => {
-      if (err) {
-        setStatus('fail');
-      } else {
-        setStatus('success');
-      }
-    });
+  const [canResend, setCanResend] = useState(false);
+  const handleCanResend = () => {
+    setTimeout(() => {
+      setCanResend(true);
+    }, 6 * 10000);
   };
+  const handleResend = () => {
+    if (canResend) {
+      setCanResend(false);
+      resendPasswordReset({ email }, err => {
+        if (err) {
+          setStatus('fail');
+        } else {
+          setStatus('success');
+          handleCanResend();
+        }
+      });
+    }
+  };
+
+  useEffect(() => { handleCanResend(); }, []);
   return (
     <div className="empty-container email-sent text-center">
       {status === 'pending' ? (
@@ -45,7 +57,7 @@ function PasswordResetSent({
           </div>
           <div className="f-c-link-b w-auto py-3 d-flex justify-content-center align-items-center">
             <div className="d-flex flex-row">
-              <Button handleOnClick={handleResend} label="Resend" classes="primary-button mt-3" />
+              <Button handleOnClick={handleResend} label="Resend" classes={`primary-button ${(!canResend || status === 'pending') && 'disabled'} mt-3`} />
             </div>
           </div>
         </div>
