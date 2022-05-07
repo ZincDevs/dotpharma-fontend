@@ -56,25 +56,28 @@ function ForgotPassword() {
     <div className="signUpContainer loginContainer">
       <div className="row loginContent">
         <div className="col-12 right d-flex justify-content-center align-items-center">
-          <div className="c-f-content">
-            {status === 'pending' && (<ProgressBar />)}
-            <div className="c-f-i-content py-4 px-5">
-              <ContentHead label="Forgot password 😉" />
-              <div className="c-content-fields w-auto">
-                <form
-                  onSubmit={handlePassReset}
-                  className="needs-validation"
-                  ref={form}
-                >
-                  <Email
-                    label="If you forgot your passoword, don't worry. we will help to reset it. Please, enter your email in the text input below. we will be sending the confirmation link to your email."
-                    handleOnChange={handleEmailChange}
-                    value={email}
-                    errors={emailErrors}
-                    labeled
-                  />
-                  <Button label="Reset Password" classes={`primary-button ${(!canContinue || status === 'pending') && 'disabled'} mt-3`} />
-                </form>
+          <div className="c-f-u-content">
+            <ContentHead />
+            <div className="c-f-content">
+              {status === 'pending' && (<ProgressBar />)}
+              <div className="c-f-i-content py-4 px-5">
+                <div className="c-content-fields w-auto">
+                  <h6>Forgot password ? 😉</h6>
+                  <form
+                    onSubmit={handlePassReset}
+                    className="needs-validation"
+                    ref={form}
+                  >
+                    <Email
+                      label="If you forgot your passoword, don't worry. we will help to reset it. Please, enter your email in the text input below. we will be sending the confirmation link to your email."
+                      handleOnChange={handleEmailChange}
+                      value={email}
+                      errors={emailErrors}
+                      labeled
+                    />
+                    <Button label="Reset Password" classes={`primary-button ${(!canContinue || status === 'pending') && 'disabled'} mt-3`} />
+                  </form>
+                </div>
               </div>
             </div>
           </div>

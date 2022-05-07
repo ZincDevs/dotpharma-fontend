@@ -25,8 +25,8 @@ function SignUpVerificationComple({ verifyUserAction, user: { verifyResponse } }
   };
 
   useEffect(() => {
-    const { token } = QueryString.parse(location.search);
-    verifyUserAction(token);
+    const { session } = QueryString.parse(location.search);
+    verifyUserAction(session);
   }, []);
   useEffect(() => {
     switch (verifyResponse.status) {
