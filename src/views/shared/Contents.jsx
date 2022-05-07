@@ -25,14 +25,17 @@ function Welcome() {
   );
 }
 
-function ContentHead({ label }) {
+function ContentHead() {
   return (
     <div className="c-header">
       <div className="w-auto d-flex justify-content-center align-items-center py-2">
-        <Logo />
+        <Logo width={35} height={35} />
       </div>
       <div className="w-auto d-flex justify-content-center align-items-center py-2">
-        <h3 className="text-1">{label}</h3>
+        <h3 className="d-none d-sm-flex">
+          Dot
+          <strong>Pharma</strong>
+        </h3>
       </div>
     </div>
   );
