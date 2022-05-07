@@ -6,6 +6,7 @@ import Login from './auth/Login';
 import AdminLogin from './admin/auth/Login';
 import Signup from './auth/Signup';
 import ForgotPassword from './auth/ForgotPassword';
+import ApplyPasswordReset from './auth/ApplyPasswordReset';
 import NotFound from './shared/NotFound';
 // import Empty from './shared/Empty';
 import Verification from './auth/VerificationComplete';
@@ -37,9 +38,11 @@ function App() {
 
         {/* Public Routes for users */}
         <Route path="/login" key={key()} element={<Login />} />
-        <Route path="/login/forgot-password" key={key()} element={<ForgotPassword />} />
+        <Route path="/forgot-password" key={key()} element={<ForgotPassword />} />
+        <Route path="/reset-password" key={key()} element={<ApplyPasswordReset />} />
+
         <Route path="/signup" key={key()} element={<Signup />} />
-        <Route path="/signup/verify" key={key()} element={<Verification />} />
+        <Route path="/verify" key={key()} element={<Verification />} />
         <Route path="/terms-and-conditions" key={key()} element={<TermsAndConditions />} />
         <Route path="/privacy-policy" key={key()} element={<PrivacyPolicy />} />
 
