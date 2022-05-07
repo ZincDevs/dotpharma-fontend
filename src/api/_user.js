@@ -13,6 +13,7 @@ const {
   get_all_users_api,
   r_psw_rese_api,
   r_r_psw_rese_api,
+  apply_psw_reset_api,
 } = Constants;
 // const axiosPrivate = useAxiosPrivate();
 export const verifyUser = async token => {
@@ -54,6 +55,15 @@ export const passwordReset = async (info, callback) => {
 export const resendPasswordReset = async (info, callback) => {
   try {
     const { data } = await axios.post(r_r_psw_rese_api, info);
+    callback(null, data);
+  } catch (error) {
+    callback(error);
+  }
+};
+
+export const applyPasswordReset = async (info, session, callback) => {
+  try {
+    const { data } = await axios.put(apply_psw_reset_api(session), info);
     callback(null, data);
   } catch (error) {
     callback(error);
