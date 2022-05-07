@@ -1,4 +1,5 @@
 @import "https://fonts.googleapis.com/css2?family=Dosis:wght@700&family=Poppins:wght@700&family=Roboto&display=swap";
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
 @font-face {
   font-family: "valken";
   src: url(../fonts/Valken__.ttf);
@@ -31,10 +32,6 @@
   background: linear-gradient(90deg, #233c71, #233c71, rgba(35, 60, 113, 0.9), rgba(35, 60, 113, 0.8), rgba(35, 60, 113, 0.6)), url(../images/doc.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-.loginContainer {
-  background: linear-gradient(90deg, rgba(236, 246, 254, 0.9), rgba(236, 246, 254, 0.7), rgba(236, 246, 254, 0.6), rgba(236, 246, 254, 0.4)), url(../images/syringe.jpeg);
 }
 
 @keyframes jumping1 {
@@ -334,6 +331,77 @@
   margin-left: 11px;
 }
 
+.custom-shape-divider-top-1651954358 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1651954358 svg {
+  position: relative;
+  display: block;
+  width: calc(158% + 1.3px);
+  height: 84px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1651954358 .shape-fill {
+  fill: #2B8DD0;
+}
+
+/** For tablet devices **/
+@media (min-width: 768px) and (max-width: 1023px) {
+  .custom-shape-divider-top-1651954358 svg {
+    width: calc(100% + 1.3px);
+    height: 92px;
+  }
+}
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-shape-divider-top-1651954358 svg {
+    width: calc(168% + 1.3px);
+    height: 58px;
+  }
+}
+.custom-shape-divider-bottom-1651954456 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1651954456 svg {
+  position: relative;
+  display: block;
+  width: calc(158% + 1.3px);
+  height: 84px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1651954456 .shape-fill {
+  fill: #2B8DD0;
+}
+
+/** For tablet devices **/
+@media (min-width: 768px) and (max-width: 1023px) {
+  .custom-shape-divider-bottom-1651954456 svg {
+    width: calc(100% + 1.3px);
+    height: 92px;
+  }
+}
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-shape-divider-bottom-1651954456 svg {
+    width: calc(168% + 1.3px);
+    height: 58px;
+  }
+}
 body {
   background-color: #ecf6fe;
   margin: 0;
@@ -436,6 +504,7 @@ input {
   background: white;
   padding: 0 10px;
   color: #bbb;
+  font-size: small;
 }
 
 .f-c-link-b span,
@@ -1091,6 +1160,115 @@ input {
   }
 }
 
+.alert {
+  position: relative;
+  border-radius: 0 !important;
+}
+.alert .ico {
+  padding-right: 0.5em;
+}
+
+.close {
+  padding-left: 0.5em;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.simple-alert {
+  background-color: rgba(235, 235, 235, 0.4);
+  border: 0.3px solid #d2d2d2;
+}
+.simple-alert small,
+.simple-alert span {
+  color: #929292;
+}
+.simple-alert a {
+  text-decoration: underline;
+  font-size: small;
+  color: #858585;
+  margin-left: 10px;
+}
+.simple-alert .close {
+  border-color: #929292;
+  color: #929292;
+}
+
+.success-alert {
+  background-color: rgba(101, 207, 161, 0.4);
+  border: 0.3px solid #3ec389;
+}
+.success-alert small,
+.success-alert span {
+  color: #1f6345;
+}
+.success-alert a {
+  text-decoration: underline;
+  font-size: small;
+  color: #194f38;
+  margin-left: 10px;
+}
+.success-alert .close {
+  border-color: #1f6345;
+  color: #1f6345;
+}
+
+.danger-alert {
+  background-color: rgba(239, 129, 129, 0.4);
+  border: 0.3px solid #e95454;
+}
+.danger-alert small,
+.danger-alert span {
+  color: #a81515;
+}
+.danger-alert a {
+  text-decoration: underline;
+  font-size: small;
+  color: #921212;
+  margin-left: 10px;
+}
+.danger-alert .close {
+  border-color: #a81515;
+  color: #a81515;
+}
+
+.warning-alert {
+  background-color: rgba(243, 219, 166, 0.4);
+  border: 0.3px solid #edc979;
+}
+.warning-alert small,
+.warning-alert span {
+  color: #cb941b;
+}
+.warning-alert a {
+  text-decoration: underline;
+  font-size: small;
+  color: #b58418;
+  margin-left: 10px;
+}
+.warning-alert .close {
+  border-color: #cb941b;
+  color: #cb941b;
+}
+
+.info-alert {
+  background-color: rgba(106, 188, 246, 0.4);
+  border: 0.3px solid #3aa6f3;
+}
+.info-alert small,
+.info-alert span {
+  color: #0a64a4;
+}
+.info-alert a {
+  text-decoration: underline;
+  font-size: small;
+  color: #08558c;
+  margin-left: 10px;
+}
+.info-alert .close {
+  border-color: #0a64a4;
+  color: #0a64a4;
+}
+
 .empty-container {
   background-color: #ecf6fe;
 }
@@ -1207,6 +1385,7 @@ input {
 }
 
 .loginContainer {
+  background-color: #ecf6fe;
   padding: 0;
 }
 .loginContainer .row {
@@ -1219,36 +1398,7 @@ input {
 }
 .loginContainer .loginContent {
   height: 100vh;
-}
-.loginContainer .loginContent .left {
-  background: #207cc6;
-}
-.loginContainer .loginContent .left .c-lf {
-  width: 95%;
-  height: 100%;
-  padding: 60px;
-}
-.loginContainer .loginContent .left .c-lf h1 {
-  color: #ecf6fe;
-  font-size: 3em;
-  border: 1px solid red;
-}
-.loginContainer .loginContent .left .c-lf p {
-  font-size: 2em;
-  color: white;
-  border: 1px solid red;
-  font-family: "Dosis", sans-serif;
-}
-.loginContainer .loginContent .left .c-lf p span {
-  text-transform: uppercase;
-  color: #0bda6c;
-  font-family: "Dosis", sans-serif;
-}
-.loginContainer .loginContent .left .c-lf h4 {
-  color: white;
-  font-family: "Dosis", sans-serif;
-  border: 1px solid red;
-  font-size: 2em;
+  position: relative;
 }
 .loginContainer .c-c-link a {
   color: #797979;
@@ -1257,8 +1407,33 @@ input {
   color: #2B8DD0;
 }
 
-.c-f-content {
+.c-f-u-content {
   width: 30em;
+}
+.c-f-u-content h6 {
+  color: #797979;
+  font-size: 1.5em;
+}
+.c-f-u-content .c-header h3 {
+  color: #2B8DD0;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-family: "Dosis", sans-serif;
+  font-size: 1em;
+}
+.c-f-u-content .c-header strong {
+  margin-left: 4px;
+  font-weight: 800;
+  color: #48AC62;
+}
+.c-f-u-content .c-header strong::before,
+.c-f-u-content .c-header strong::after {
+  content: ".";
+  font-family: dosis !important;
+}
+
+.c-f-content {
   background-color: white;
   box-shadow: 0 0 7px 0 #e1e1e1;
 }
@@ -1496,8 +1671,20 @@ input {
   left: 0;
   top: 0;
   z-index: 0;
-  background: #FFFF !important;
+  background: #233c71 !important;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.user-header .user-logo {
+  height: 40px;
+  position: relative;
+}
+.user-header .user-logo span {
+  color: white;
+  opacity: 0.7;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-family: "Dosis", sans-serif;
+  margin-left: 10px;
 }
 .user-header a {
   font-family: dosis;
@@ -1506,7 +1693,7 @@ input {
 .user-header .dropdown-menu {
   border-radius: 0 !important;
   margin-top: 1.4rem !important;
-  width: 18rem !important;
+  min-width: 18rem;
   padding: 0 !important;
   border: 0;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
@@ -1530,6 +1717,43 @@ input {
 .user-header .dropdown-menu .dropdown-item:hover {
   background-color: rgba(187, 187, 187, 0.1);
 }
+.user-header .notifications-item:hover {
+  background-color: rgba(187, 187, 187, 0.1) !important;
+}
+.user-header .notification .dropdown-menu {
+  width: 23rem !important;
+}
+.user-header .notification .dropdown-list-image {
+  padding: 0.5rem;
+  background-color: #2B8DD0;
+}
+.user-header .notification .btn-light {
+  color: #2cdd9b;
+  background-color: #e5f7f0;
+  border-color: #d8f7eb;
+}
+.user-header .notification .micon,
+.user-header .cart .micon {
+  cursor: pointer;
+}
+.user-header .notification .micon i,
+.user-header .cart .micon i {
+  color: white !important;
+  font-size: 20px;
+  font-weight: 600;
+}
+.user-header .notification .micon i.has_some:after,
+.user-header .cart .micon i.has_some:after {
+  position: absolute;
+  top: 2px;
+  right: 24px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  content: "";
+  background: #7dbae4;
+  animation: pulse-a 2s infinite;
+}
 
 .profile-pic span {
   color: white;
@@ -1546,30 +1770,6 @@ input {
 }
 .path-container a:hover {
   color: #2B8DD0;
-}
-
-.user-logo {
-  height: 40px;
-  position: relative;
-}
-.user-logo span {
-  color: #797979;
-  opacity: 0.7;
-  text-transform: uppercase;
-  font-size: 20px;
-  font-family: "Dosis", sans-serif;
-  margin-left: 10px;
-}
-.user-logo span:after {
-  position: absolute;
-  top: 10px;
-  right: -5px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  content: "";
-  background: #7dbae4;
-  animation: pulse-a 2s infinite;
 }
 
 .banner {
