@@ -8,8 +8,7 @@ function ProfilePic({ profile: { pic, name } }) {
   const profileIcon = name.split(' ').map(n => n.substring(0, 1)).join('').substring(0, 2);
   return (
     <a
-      href="#"
-      className="d-block profile-pic link-dark text-decoration-none dropdown-toggle"
+      className="d-block profile-pic link-dark text-decoration-none"
       id="dropdownUser1"
       data-bs-toggle="dropdown"
       aria-expanded="false"
