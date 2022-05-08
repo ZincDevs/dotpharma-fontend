@@ -1,17 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import { Button, ProgressBar } from '../shared/Elements';
-import { resentVerificationAction } from '../../redux/actions';
 import Loader from '../shared/Loader';
+import { resentVerification } from '../../api';
 
-function SignUpVerificationSent({
-  email,
-  resentVerificationAction,
-  user: { resendVerificationResponce: { status } },
-}) {
+function SignUpVerificationSent({ email }) {
+  const [status, setStatus] = useState();
   const [canResend, setCanResend] = useState(false);
   const handleCanResend = () => {
     setTimeout(() => {
@@ -21,11 +16,17 @@ function SignUpVerificationSent({
   const handleResend = () => {
     if (canResend) {
       setCanResend(false);
-      resentVerificationAction(email);
+      setStatus('pending');
+      resentVerification(email, (err, data) => {
+        if (err) {
+          setStatus('fail');
+        } else {
+          handleCanResend(data);
+        }
+      });
     }
   };
   useEffect(() => { handleCanResend(); }, []);
-  useEffect(() => { if (status === 'success') handleCanResend(); }, [status]);
   return (
     <div className="empty-container email-sent text-center">
       {status === 'pending' ? (
@@ -62,12 +63,5 @@ function SignUpVerificationSent({
     </div>
   );
 }
-SignUpVerificationSent.defaultProps = {
-  email: 'eric@gmail.com',
-};
 
-const mapStateToProps = ({ user }) => ({
-  user,
-});
-
-export default connect(mapStateToProps, { resentVerificationAction })(SignUpVerificationSent);
+export default SignUpVerificationSent;
