@@ -3,12 +3,10 @@
 import {
   USER_VERIRIFICATION,
   RESEND_VERIRIFICATION,
-  GET_ALL_USERS,
 } from './_types';
 import {
   resentVerification,
   verifyUser,
-  getAllUsers,
 } from '../../api';
 
 export const verifyUserAction = token => async dispach => {
@@ -28,11 +26,11 @@ export const resentVerificationAction = token => async dispach => {
   });
 };
 
-export const getAllUsersAction = token => async dispach => {
-  dispach({ type: GET_ALL_USERS, status: 'pending' });
-  const data = await getAllUsers(token);
-  dispach({
-    type: GET_ALL_USERS,
-    ...data,
-  });
-};
+// export const getAllUsersAction = token => async dispach => {
+//   dispach({ type: GET_ALL_USERS, status: 'pending' });
+//   const data = await getAllUsers(token);
+//   dispach({
+//     type: GET_ALL_USERS,
+//     ...data,
+//   });
+// };
