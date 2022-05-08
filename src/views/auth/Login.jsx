@@ -1,31 +1,34 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable max-len */
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState, useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {
   Email, Password, TCPRemember,
 } from '../shared/Input';
-import { Button, GoogleBtn, ProgressBar } from '../shared/Elements';
+import { Button, ProgressBar } from '../shared/Elements';
 import Line from '../shared/Line';
 import { ContentHead } from '../shared/Contents';
-import { logInAction } from '../../redux/actions';
 import useAuth from '../../hooks/useAuth';
-import { CLEAR_LOGIN_STATE } from '../../redux/actions/_types';
+import GoogleLogin from './GoogleLogin';
+import Alert from '../shared/Alert';
+import { logIn } from '../../api';
 
-function Login({ auth: { loginResponse }, logInAction }) {
-  let controller;
-  const dispatch = useDispatch();
+function Login({ alert: defaultAlert }) {
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || '/';
+  const [status, setStatus] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [emailErrors, setEmailErrors] = useState(null);
   const [passwordErrors, setPasswordErrors] = useState(null);
+  const [alert, setAlert] = useState(defaultAlert);
+  const [showAlert, setShowAlert] = useState(true);
 
   const handleEmailChange = e => {
     setEmail(e.target.value);
@@ -33,40 +36,39 @@ function Login({ auth: { loginResponse }, logInAction }) {
   const handlePasswordChange = e => {
     setPassword(e.target.value);
   };
-  const handleLogin = e => {
-    e.preventDefault();
-    const data = { email, password };
-    logInAction(data, controller);
-  };
   const handleLoginSuccess = response => {
+    setEmailErrors(undefined);
+    setPasswordErrors(undefined);
     setAuth({ ...response });
     navigate(from, { replace: true });
   };
 
-  useEffect(() => {
-    switch (loginResponse.status) {
-      case 'success': {
-        setEmailErrors(undefined);
-        setPasswordErrors(undefined);
-        handleLoginSuccess(loginResponse);
-        break;
-      }
-      case 'fail': {
-        setEmailErrors(loginResponse?.error?.email && [{ ...loginResponse.error.email }]);
-        setPasswordErrors(loginResponse?.error?.password && [{ ...loginResponse.error.password }]);
-        break;
-      }
-      default:
-    }
-  }, [loginResponse]);
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+  const handleShowAlert = data => {
+    setAlert(data || defaultAlert);
+    setShowAlert(true);
+  };
 
-  useEffect(() => {
-    controller = new AbortController();
-    return () => {
-      dispatch({ type: CLEAR_LOGIN_STATE });
-      controller.abort();
-    };
-  }, []);
+  const handleLogin = e => {
+    e.preventDefault();
+    const data = { email, password };
+    setStatus('pending');
+    logIn(data, (err, data) => {
+      if (err) {
+        setStatus('fail');
+        const resScode = err?.response?.status;
+        if (resScode === 400 || resScode === 401 || resScode === 403) {
+          handleShowAlert({ type: 'err', message: 'Invalid email or password! 😞' });
+        } else {
+          handleShowAlert({ type: 'err', message: 'Something went wrong. please try again latter' });
+        }
+      } else {
+        handleLoginSuccess(data);
+      }
+    });
+  };
 
   return (
     <div className="loginContainer">
@@ -75,8 +77,9 @@ function Login({ auth: { loginResponse }, logInAction }) {
           <div className="c-f-u-content">
             <ContentHead />
             <div className="c-f-content">
-              {loginResponse.status === 'pending' && (<ProgressBar />)}
+              {status === 'pending' && (<ProgressBar />)}
               <div className="c-f-i-content py-4 px-5">
+                {(showAlert && alert) && (<Alert info={alert} handleCloseAlert={handleCloseAlert} />)}
                 <div className="c-content-fields w-auto">
                   <h6>Sign In 🤞</h6>
                   <form onSubmit={handleLogin}>
@@ -97,7 +100,11 @@ function Login({ auth: { loginResponse }, logInAction }) {
                     </div>
                     <Button label="Sign In" classes="primary-button" />
                     <Line label="Or" />
-                    <GoogleBtn />
+                    <GoogleLogin
+                      handleStatus={status => setStatus(status)}
+                      handleShowAlert={handleShowAlert}
+                      handleSuccess={handleLoginSuccess}
+                    />
                   </form>
                 </div>
               </div>
@@ -115,8 +122,4 @@ function Login({ auth: { loginResponse }, logInAction }) {
   );
 }
 
-const mapStateToProps = ({ auth }) => ({
-  auth,
-});
-
-export default connect(mapStateToProps, { logInAction })(Login);
+export default Login;
