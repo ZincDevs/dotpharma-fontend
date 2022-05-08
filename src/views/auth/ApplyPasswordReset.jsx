@@ -71,7 +71,7 @@ function ApplyPasswordReset({ alert: defaultAlert }) {
             const resScode = err?.response?.status;
             resScode === 400 ? setPasswordErrors([{ message: 'Invalid password! 😞' }])
               : resScode === 401 ? handleShowAlert({ type: 'err', message: 'You are not authorired to perform this action' })
-                : resScode == 403 ? handleShowAlert({ type: 'err', message: 'Your session is either invalid or expired. would you like to ', action: { to: '/forgot-password', text: 're-request password confirmation?' } })
+                : resScode === 403 ? handleShowAlert({ type: 'err', message: 'Your session is either invalid or expired. would you like to ', action: { to: '/forgot-password', text: 're-request password confirmation?' } })
                   : handleShowAlert({ type: 'err', message: 'Something went wrong. please try again latter' });
           } else {
             handleSusccess();
