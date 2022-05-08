@@ -9,6 +9,7 @@ import Logo from '../../../shared/Logo';
 import ProfilePic from '../../../shared/ProfilePic';
 import MenuItem from './items/MenuItem';
 import NotificationItem from './items/NotificationItem';
+import CartItem from './items/CartItem';
 import useLogout from '../../../../hooks/useLogout';
 
 function UserHeader({ notifications }) {
@@ -67,7 +68,14 @@ function UserHeader({ notifications }) {
                   <i className="bi bi-cart" />
                 </span>
                 <ul className="dropdown-menu text-small" aria-labelledby="cart">
-                  {menuItems.map(item => (<NotificationItem key={key()} item={item} />))}
+                  {menuItems.map(item => (<CartItem key={key()} item={item} />))}
+                  <li>
+                    <Link to="/cart" className="notifications-item">
+                      <div className="d-flex py-2 justify-content-center">
+                        <span>Checkout</span>
+                      </div>
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div className="dropdown text-end px-4 notification">
