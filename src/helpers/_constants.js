@@ -1,6 +1,7 @@
 export default {
   t_key_name: 'dotpharma-key-c-u',
   login_api: '/user/login',
+  google_auth_api: '/user/googleauth',
   refresh_token_api: '/user/refresh-token',
   admin_login_api: '/user/admin/login',
   signup_api: '/user/signup',
