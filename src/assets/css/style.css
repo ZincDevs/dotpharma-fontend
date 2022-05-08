@@ -403,7 +403,7 @@
   }
 }
 body {
-  background-color: #ecf6fe;
+  background-color: #f2f9ff;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -939,7 +939,7 @@ input {
   }
 }
 .shared-container {
-  background-color: #ecf6fe;
+  background-color: #f2f9ff;
 }
 
 .progress-bar {
@@ -1213,22 +1213,22 @@ input {
 }
 
 .danger-alert {
-  background-color: rgba(239, 129, 129, 0.4);
-  border: 0.3px solid #e95454;
+  background-color: rgba(253, 168, 168, 0.4);
+  border: 0.3px solid #fc7676;
 }
 .danger-alert small,
 .danger-alert span {
-  color: #a81515;
+  color: #ed0505;
 }
 .danger-alert a {
   text-decoration: underline;
   font-size: small;
-  color: #921212;
+  color: #d40505;
   margin-left: 10px;
 }
 .danger-alert .close {
-  border-color: #a81515;
-  color: #a81515;
+  border-color: #ed0505;
+  color: #ed0505;
 }
 
 .warning-alert {
@@ -1270,7 +1270,7 @@ input {
 }
 
 .empty-container {
-  background-color: #ecf6fe;
+  background-color: #f2f9ff;
 }
 .empty-container .empty-content {
   min-height: 100vh;
@@ -1385,7 +1385,7 @@ input {
 }
 
 .loginContainer {
-  background-color: #ecf6fe;
+  background-color: #f2f9ff;
   padding: 0;
 }
 .loginContainer .row {
@@ -1459,7 +1459,7 @@ input {
 }
 
 .signup-container {
-  background-color: #ecf6fe;
+  background-color: #f2f9ff;
 }
 
 .email-sent h1 {
@@ -1486,7 +1486,7 @@ input {
 }
 
 .doctor-container {
-  background-color: #ecf6fe;
+  background-color: #f2f9ff;
 }
 
 .main_menu {
