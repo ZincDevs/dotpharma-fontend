@@ -31,7 +31,6 @@
 
   h3 {
     position: relative;
-    font-size: 25px;
     color: $color_white_2;
     text-transform: uppercase;
     font-family: s-s-regular;
@@ -39,23 +38,7 @@
     letter-spacing: 5px;
     display: flex;
     animation: intro1 0.4s forwards linear;
-    font-size: 1.2em;
-
-    @media #{$small_height_screen} {
-      font-size: 15px !important;
-    }
-
-    @each $screen in $all_small_screen {
-      @media #{$screen} {
-        text-align: center !important;
-      }
-    }
-
-    @each $screen in $all_extra_small_screen {
-      @media #{$screen} {
-        font-size: .8em !important;
-      }
-    }
+    font-size: 1.5vw;
 
     strong {
       display: flex;
@@ -64,27 +47,27 @@
       font-weight: 800;
       color: $color-accent-2;
 
-      @each $screen in $all_extra_small_screen {
-        @media #{$screen} {
-          font-size: .8em !important;
-        }
-      }
+      // @each $screen in $all_extra_small_screen {
+      //   @media #{$screen} {
+      //     font-size: .8em !important;
+      //   }
+      // }
 
-      @each $screen in $all_medium_screen {
-        @media #{$screen} {
-          font-size: 25px;
-        }
-      }
+      // @each $screen in $all_medium_screen {
+      //   @media #{$screen} {
+      //     font-size: 25px;
+      //   }
+      // }
 
-      @each $screen in $only_small_screen {
-        @media #{$screen} {
-          font-size: 22px;
-        }
-      }
+      // @each $screen in $only_small_screen {
+      //   @media #{$screen} {
+      //     font-size: 22px;
+      //   }
+      // }
 
-      @media #{$small_height_screen} {
-        font-size: 15px !important;
-      }
+      // @media #{$small_height_screen} {
+      //   font-size: 15px !important;
+      // }
 
       &::before,
       &::after {
@@ -96,63 +79,71 @@
 
     @each $screen in $all_medium_screen {
       @media #{$screen} {
-        font-size: 25px;
+        font-size: 1.9vw;
       }
     }
 
-    @each $screen in $only_small_screen {
-      @media #{$screen} {
-        font-size: 22px;
-      }
-    }
+    // @each $screen in $only_small_screen {
+    //   @media #{$screen} {
+    //     font-size: 22px;
+    //   }
+    // }
 
-    @each $screen in $all_extra_small_screen {
-      @media #{$screen} {
-        font-size: 18px;
-      }
-    }
+    // @each $screen in $all_extra_small_screen {
+    //   @media #{$screen} {
+    //     font-size: 18px;
+    //   }
+    // }
   }
 
   h1 {
     position: relative;
-    font-size: 3.5em;
     font-family: Lato, sans-serif;
     margin-top: 30px;
-    // min-width: 50%;
     text-transform: capitalize;
     color: white;
+    font-size: 3.2vw;
 
     @each $screen in $all_medium_screen {
       @media #{$screen} {
-        font-size: 2em;
+        font-size: 3.5vw;
       }
     }
 
-    @each $screen in $only_small_screen {
-      @media #{$screen} {
-        font-size: 1.8em;
-      }
-    }
+    // @each $screen in $only_small_screen {
+    //   @media #{$screen} {
+    //     font-size: 1.8em;
+    //   }
+    // }
 
-    @each $screen in $all_extra_small_screen {
-      @media #{$screen} {
-        font-size: 1.5em;
-      }
-    }
+    // @each $screen in $all_extra_small_screen {
+    //   @media #{$screen} {
+    //     font-size: 1.5em;
+    //   }
+    // }
 
-    @media #{$small_height_screen} {
-      font-size: 30px !important;
-    }
+    // @media #{$small_height_screen} {
+    //   font-size: 30px !important;
+    // }
   }
 
   a {
     margin-top: 70px;
-    font-size: 20px;
     text-decoration: none !important;
     border-radius: 2px !important;
-    font-size: 24px !important;
+    font-size: 1.7vw !important;
     padding: 10px 35px !important;
     transition: all 0.5s ease-in-out !important;
+    @each $screen in $all_extra_small_screen {
+      @media #{$screen} {
+        font-size: 3.5vw !important;
+      }
+    }
+    @each $screen in $all_medium_screen {
+      @media #{$screen} {
+        font-size: 2vw !important;
+      }
+    }
   }
 
   .mouse {

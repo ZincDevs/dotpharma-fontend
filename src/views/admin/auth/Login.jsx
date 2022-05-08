@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ContentHead } from '../shared/Contents';
-import { Email, Password, TCPRemember } from '../shared/Input';
-import { Button, ProgressBar } from '../shared/Elements';
-import { adminLogInAction } from '../../redux/actions';
+import { ContentHead } from '../../shared/Contents';
+import { Email, Password, TCPRemember } from '../../shared/Input';
+import { Button, ProgressBar } from '../../shared/Elements';
+import { adminLogInAction } from '../../../redux/actions';
 
 function Login({ auth: { adminLoginResponse }, adminLogInAction }) {
   const [email, setEmail] = useState();

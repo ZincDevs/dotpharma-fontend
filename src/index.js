@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './views/App';
 import store from './redux';
 import { AuthProvider } from './context/AuthProvider';
+import ContactUs from './views/communication/contactus/ContactUs';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -16,6 +17,7 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <Provider store={store}>
+          <ContactUs />
           <Routes>
             <Route path="/*" element={<App />} />
           </Routes>

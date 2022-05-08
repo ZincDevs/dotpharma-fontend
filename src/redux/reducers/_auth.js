@@ -1,5 +1,7 @@
 /* eslint-disable default-param-last */
-import { USER_SIGNUP, USER_LOGIN, ADMIN_USER_LOGIN } from '../actions/_types';
+import {
+  USER_SIGNUP, USER_LOGIN, ADMIN_USER_LOGIN, CLEAR_LOGIN_STATE,
+} from '../actions/_types';
 
 const initialState = {
   signupResponse: {},
@@ -33,6 +35,13 @@ export default (state = initialState, action) => {
           ...rest,
           status,
         },
+      };
+    case CLEAR_LOGIN_STATE:
+      return {
+        ...state,
+        signupResponse: {},
+        loginResponse: {},
+        adminLoginResponse: {},
       };
     default:
       return state;

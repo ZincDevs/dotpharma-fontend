@@ -1,5 +1,9 @@
 /* eslint-disable default-param-last */
-import { USER_VERIRIFICATION, RESEND_VERIRIFICATION } from '../actions/_types';
+import {
+  USER_VERIRIFICATION,
+  RESEND_VERIRIFICATION,
+  GET_ALL_USERS,
+} from '../actions/_types';
 
 const initialState = {
   verifyResponse: { data: {} },
@@ -21,6 +25,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         resendVerificationResponce: {
+          ...rest,
+          status,
+        },
+      };
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        users: {
           ...rest,
           status,
         },

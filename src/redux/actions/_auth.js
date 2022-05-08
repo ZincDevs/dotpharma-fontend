@@ -12,18 +12,18 @@ export const signUpAction = user => async dispach => {
   });
 };
 
-export const logInAction = auth => async dispach => {
+export const logInAction = (auth, controller) => async dispach => {
   dispach({ type: USER_LOGIN, status: 'pending' });
-  const data = await logIn(auth);
+  const data = await logIn(auth, controller);
   dispach({
     type: USER_LOGIN,
     ...data,
   });
 };
 
-export const adminLogInAction = auth => async dispach => {
+export const adminLogInAction = (auth, controller) => async dispach => {
   dispach({ type: ADMIN_USER_LOGIN, status: 'pending' });
-  const data = await logIn(auth, true);
+  const data = await logIn(auth, true, controller);
   dispach({
     type: ADMIN_USER_LOGIN,
     ...data,

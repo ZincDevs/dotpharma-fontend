@@ -3,52 +3,58 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import QueryString from 'query-string';
-import { useLocation, Navigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ProgressBar } from '../shared/Elements';
 import Loader from '../shared/Loader';
-import { verifyUserAction } from '../../redux/actions';
 import VerificationFailed from './VerificationFailed';
+import useAuth from '../../hooks/useAuth';
+import { verifyUser } from '../../api';
 
-function SignUpVerificationComple({ verifyUserAction, user: { verifyResponse } }) {
+function SignUpVerificationComple() {
   const [status, setStatus] = useState('pending');
-  const [done, setDone] = useState(false);
+  const { setAuth } = useAuth();
   const location = useLocation();
-  const handleRedirect = () => {
+  const navigate = useNavigate();
+  const handleRedirect = response => {
     setTimeout(() => {
-      setDone(true);
+      setAuth({ ...response });
+      navigate('/');
     }, 8000);
   };
 
   useEffect(() => {
-    const { token } = QueryString.parse(location.search);
-    verifyUserAction(token);
-  }, []);
-  useEffect(() => {
-    switch (verifyResponse.status) {
-      case 'success': {
-        setStatus('success');
-        handleRedirect();
-        break;
-      }
-      case 'pending': {
-        setStatus('pending');
-        break;
-      }
-      case 'fail': {
+    const { session } = QueryString.parse(location.search);
+    // verifyUserAction(session);verifyUser
+    setStatus('pending');
+    verifyUser(session, (err, data) => {
+      if (err) {
         setStatus('fail');
-        break;
+      } else {
+        setStatus('success');
+        handleRedirect(data);
       }
-      default:
-    }
-  }, [verifyResponse]);
+    });
+  }, []);
+  // useEffect(() => {
+  //   switch (verifyResponse.status) {
+  //     case 'success': {
+  //       setStatus('success');
+  //       handleRedirect(verifyResponse);
+  //       break;
+  //     }
+  //     case 'pending': {
+  //       setStatus('pending');
+  //       break;
+  //     }
+  //     case 'fail': {
+  //       setStatus('fail');
+  //       break;
+  //     }
+  //     default:
+  //   }
+  // }, [verifyResponse]);
 
-  if (done) {
-    return (
-      <Navigate to="/login" />
-    );
-  }
   if (status === 'fail') {
     return (<VerificationFailed />);
   }
@@ -78,8 +84,4 @@ function SignUpVerificationComple({ verifyUserAction, user: { verifyResponse } }
   );
 }
 
-const mapStateToProps = ({ user }) => ({
-  user,
-});
-
-export default connect(mapStateToProps, { verifyUserAction })(SignUpVerificationComple);
+export default SignUpVerificationComple;

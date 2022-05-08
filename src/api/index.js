@@ -1,4 +1,6 @@
-import { logIn, signUp } from './_auth';
+import {
+  logIn, signUp, refreshToken, googleAuth,
+} from './_auth';
 import { verifyUser, resentVerification } from './_user';
 
 export {
@@ -6,4 +8,6 @@ export {
   signUp,
   verifyUser,
   resentVerification,
+  refreshToken,
+  googleAuth,
 };

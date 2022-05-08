@@ -6,10 +6,12 @@
 @import "./abstracts/mixins";
 @import "./abstracts/keyframes";
 @import "./shared/button";
+@import "./shared/svgs.scss";
 @import "./index";
 @import "./shared";
 @import "./progress_bar";
 @import "./loader";
+@import "./shared/alert.scss";
 @import "./empty";
 @import "./inputs";
 @import "./login";
@@ -19,3 +21,9 @@
 @import "./layouts/banner";
 @import "./layouts/products";
 @import "./layouts/contactus";
+
+// admin scss
+@import "./admin/index.scss";
+@import "./admin/sidebar.scss";
+@import "./admin/users.scss";
+

@@ -1,5 +1,6 @@
 .loginContainer {
-  @extend %login-bg-gr-1;
+  // @extend %login-bg-gr-1;
+  background-color: $sColor;
   padding: 0;
 
   .row {
@@ -14,38 +15,7 @@
 
   .loginContent {
     height: 100vh;
-
-    .left {
-      background: $bg1;
-
-      .c-lf {
-        width: 95%;
-        height: 100%;
-        padding: 60px;
-
-        h1{
-          color: $sColor;
-          font-size: 3em;
-        }
-        p {
-          font-size: 2em;
-          color: white;
-          font-family: $dosis;
-          span {
-            text-transform: uppercase;
-            color: $green;
-            font-family: $dosis;
-          }
-        }
-
-
-        h4 {
-          color: white;
-          font-family: $dosis;
-          font-size: 2em;
-        }
-      }
-    }
+    position: relative;
   }
 
 
@@ -59,10 +29,43 @@
   }
 }
 
-.c-f-content {
+
+.c-f-u-content {
+  // border: 1px solid red;
   width: 30em;
+  h6 {
+    color: $textColor-1;
+    font-size: 1.5em;
+  }
+
+  .c-header {
+    h3 {
+      color: #2B8DD0;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 300;
+      font-family: 'Dosis', sans-serif;
+      font-size: 1em;
+    }
+
+    strong {
+      margin-left: 4px;
+      font-weight: 800;
+      color: #48AC62;
+    }
+
+    strong::before,
+    strong::after {
+      content: ".";
+      font-family: dosis !important;
+    }
+  }
+}
+
+.c-f-content {
   background-color: white;
   box-shadow: 0 0 7px 0 $bColor;
+  // border-radius: 20px;
 }
 
 .c-f-i-content {
@@ -84,3 +87,5 @@
   border-radius: 0;
   background-color: lighten($pColor, $amount: 40);
 }
+
+

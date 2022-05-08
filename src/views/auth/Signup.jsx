@@ -1,29 +1,37 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable brace-style */
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
-import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { useState, useRef } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Validate } from '../../helpers';
 import {
-  Email, Password, TCPPAgree, Text,
+  Email, Password, TCPPAgree,
 } from '../shared/Input';
-import { Button, GoogleBtn, ProgressBar } from '../shared/Elements';
+import { Button, ProgressBar } from '../shared/Elements';
 import Line from '../shared/Line';
 import { ContentHead } from '../shared/Contents';
-import { signUpAction } from '../../redux/actions';
 import VerificationSent from './VerificationSent';
+import { signUp } from '../../api';
+import GoogleLogin from './GoogleLogin';
+import Alert from '../shared/Alert';
+import useAuth from '../../hooks/useAuth';
 
-function SignUp({ auth: { signupResponse }, signUpAction }) {
+function SignUp({ alert: defaultAlert }) {
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState();
+  const [status, setStatus] = useState();
   const [password, setPassword] = useState();
   const [agreeToTC, setAgreeToTC] = useState(false);
   const [emailErrors, setEmailErrors] = useState(null);
   const [passwordErrors, setPasswordErrors] = useState(null);
   const [agreeErrors, setAgreeErrors] = useState(null);
   const [signupSuccess, setSignupSuccess] = useState();
+  const [alert, setAlert] = useState(defaultAlert);
+  const [showAlert, setShowAlert] = useState(true);
+  const from = location?.state?.from?.pathname || '/';
   const form = useRef();
   const canContinue = !!(!emailErrors && !passwordErrors && email && password && agreeToTC);
 
@@ -47,35 +55,47 @@ function SignUp({ auth: { signupResponse }, signUpAction }) {
     handlePasswordChange({ target: { value: password } });
     handleAgree({ target: { checked: agreeToTC } });
   };
-  const handleSignUp = e => {
-    e.preventDefault();
-    if (signupResponse.status !== 'pending') {
-      if (!canContinue) {
-        ValidateInputs();
-      } else {
-        const data = { email, password };
-        signUpAction(data);
-      }
-    }
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+  const handleShowAlert = data => {
+    setAlert(data || defaultAlert);
+    setShowAlert(true);
   };
   const handleSignupSuccess = () => {
     setSignupSuccess(true);
   };
-
-  useEffect(() => {
-    switch (signupResponse.status) {
-      case 'success': {
-        handleSignupSuccess();
-        break;
+  const handleGoogleLoginSuccess = response => {
+    setEmailErrors(undefined);
+    setPasswordErrors(undefined);
+    setAuth({ ...response });
+    navigate(from, { replace: true });
+  };
+  const handleSignUp = e => {
+    e.preventDefault();
+    if (status !== 'pending') {
+      if (!canContinue) {
+        ValidateInputs();
+      } else {
+        setStatus('pending');
+        const data = { email, password, role: 'PATIENT' };
+        signUp(data, (err, data) => {
+          if (err) {
+            setStatus('fail');
+            const resScode = err?.response?.status;
+            if (resScode === 400 || resScode === 409) {
+              setEmailErrors(err?.response.data && [{ ...err.response.data.error.email }]);
+              setPasswordErrors(err?.response.data && [{ ...err.response.data.error.password }]);
+            } else {
+              handleShowAlert({ type: 'err', message: 'Something went wrong. please try again latter' });
+            }
+          } else {
+            handleSignupSuccess(data);
+          }
+        });
       }
-      case 'fail': {
-        setEmailErrors(signupResponse.error.email && [{ ...signupResponse.error.email }]);
-        setPasswordErrors(signupResponse.error.password && [{ ...signupResponse.error.password }]);
-        break;
-      }
-      default:
     }
-  }, [signupResponse]);
+  };
 
   if (signupSuccess) {
     return (<VerificationSent email={email} />);
@@ -85,38 +105,46 @@ function SignUp({ auth: { signupResponse }, signUpAction }) {
     <div className="signUpContainer loginContainer">
       <div className="row loginContent">
         <div className="col-12 right d-flex justify-content-center align-items-center">
-          <div className="c-f-content">
-            {signupResponse.status === 'pending' && (<ProgressBar />)}
-            <div className="c-f-i-content py-4 px-5">
-              <ContentHead label="Sign Up 🤞" />
-              <div className="c-content-fields w-auto">
-                <form
-                  onSubmit={handleSignUp}
-                  className="needs-validation"
-                  ref={form}
-                >
-                  <Email
-                    handleOnChange={handleEmailChange}
-                    value={email}
-                    errors={emailErrors}
-                    labeled
-                  />
-                  <Password
-                    handleOnChange={handlePasswordChange}
-                    value={password}
-                    errors={passwordErrors}
-                  />
-                  <TCPPAgree handleAgree={handleAgree} errors={agreeErrors} />
-                  <Button label="Sign Up" classes={`primary-button ${(!canContinue || signupResponse.status === 'pending') && 'disabled'} mt-3`} />
-                  <Line label="Or" />
-                  <GoogleBtn />
-                </form>
-              </div>
-              <div className="f-c-link-b w-auto py-3 d-flex justify-content-center align-items-center">
-                <div className="d-flex flex-row">
-                  <span className="px-1">Already have an account? </span>
-                  <Link to="/login">Sign In</Link>
+          <div className="c-f-u-content">
+            <ContentHead />
+            <div className="c-f-content">
+              {status === 'pending' && (<ProgressBar />)}
+              <div className="c-f-i-content py-4 px-5">
+                {(showAlert && alert) && (<Alert info={alert} handleCloseAlert={handleCloseAlert} />)}
+                <div className="c-content-fields w-auto">
+                  <h6>Sign Up 🤞</h6>
+                  <form
+                    onSubmit={handleSignUp}
+                    className="needs-validation"
+                    ref={form}
+                  >
+                    <Email
+                      handleOnChange={handleEmailChange}
+                      value={email}
+                      errors={emailErrors}
+                      labeled
+                    />
+                    <Password
+                      handleOnChange={handlePasswordChange}
+                      value={password}
+                      errors={passwordErrors}
+                    />
+                    <TCPPAgree handleAgree={handleAgree} errors={agreeErrors} />
+                    <Button label="Sign Up" classes={`primary-button ${(!canContinue || status === 'pending') && 'disabled'} mt-3`} />
+                    <Line label="Or" />
+                    <GoogleLogin
+                      handleStatus={status => setStatus(status)}
+                      handleShowAlert={handleShowAlert}
+                      handleSuccess={handleGoogleLoginSuccess}
+                    />
+                  </form>
                 </div>
+              </div>
+            </div>
+            <div className="f-c-link-b w-auto py-3 d-flex justify-content-center align-items-center">
+              <div className="d-flex flex-row">
+                <span className="px-1">Already have an account? </span>
+                <Link to="/login">Sign In</Link>
               </div>
             </div>
           </div>
@@ -126,8 +154,4 @@ function SignUp({ auth: { signupResponse }, signUpAction }) {
   );
 }
 
-const mapStateToProps = ({ auth }) => ({
-  auth,
-});
-
-export default connect(mapStateToProps, { signUpAction })(SignUp);
+export default SignUp;

@@ -1,20 +1,32 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
 import { Button, ProgressBar } from '../shared/Elements';
-import { resentVerificationAction } from '../../redux/actions';
 import Loader from '../shared/Loader';
+import { resentVerification } from '../../api';
 
-function SignUpVerificationSent({
-  email,
-  resentVerificationAction,
-  user: { resendVerificationResponce: { status } },
-}) {
-  const handleResend = () => {
-    resentVerificationAction(email);
+function SignUpVerificationSent({ email }) {
+  const [status, setStatus] = useState();
+  const [canResend, setCanResend] = useState(false);
+  const handleCanResend = () => {
+    setTimeout(() => {
+      setCanResend(true);
+    }, 6 * 10000);
   };
+  const handleResend = () => {
+    if (canResend) {
+      setCanResend(false);
+      setStatus('pending');
+      resentVerification(email, (err, data) => {
+        if (err) {
+          setStatus('fail');
+        } else {
+          handleCanResend(data);
+        }
+      });
+    }
+  };
+  useEffect(() => { handleCanResend(); }, []);
   return (
     <div className="empty-container email-sent text-center">
       {status === 'pending' ? (
@@ -42,7 +54,7 @@ function SignUpVerificationSent({
           </div>
           <div className="f-c-link-b w-auto py-3 d-flex justify-content-center align-items-center">
             <div className="d-flex flex-row">
-              <Button handleOnClick={handleResend} label="Resend" classes="primary-button mt-3" />
+              <Button handleOnClick={handleResend} label="Resend" classes={`primary-button ${(!canResend || status === 'pending') && 'disabled'} mt-3`} />
             </div>
           </div>
         </div>
@@ -51,12 +63,5 @@ function SignUpVerificationSent({
     </div>
   );
 }
-SignUpVerificationSent.defaultProps = {
-  email: 'eric@gmail.com',
-};
 
-const mapStateToProps = ({ user }) => ({
-  user,
-});
-
-export default connect(mapStateToProps, { resentVerificationAction })(SignUpVerificationSent);
+export default SignUpVerificationSent;

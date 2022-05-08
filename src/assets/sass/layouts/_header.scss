@@ -4,6 +4,7 @@
   align-content: center;
   margin-top: 50px;
   z-index: 4 !important;
+
   .logo {
     height: 40px;
     position: relative;
@@ -16,6 +17,7 @@
       font-size: 20px;
       font-family: $dosis;
       margin-left: 10px;
+
       &:after {
         position: absolute;
         top: 10px;
@@ -54,6 +56,7 @@
       text-decoration: none;
       cursor: pointer;
       @include ease-transition(all, 0.3s, ease-in-out);
+
       &:hover {
         transform: scale(1.09);
         color: $pColor;
@@ -204,8 +207,23 @@
   left: 0;
   top: 0;
   z-index: 0;
-  background: $color-white !important;
+  background: $color-primary-dark !important;
   box-shadow: $main_shadow;
+
+  .user-logo {
+    height: 40px;
+    position: relative;
+    // border: 1px solid red;
+
+    span {
+      color: white;
+      opacity: 0.7;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-family: $dosis;
+      margin-left: 10px;
+    }
+  }
 
   a {
     font-family: dosis;
@@ -215,11 +233,11 @@
   .dropdown-menu {
     border-radius: 0 !important;
     margin-top: 1.4rem !important;
-    width: 18rem !important;
+    min-width: 18rem;
     padding: 0 !important;
     border: 0;
     box-shadow: $second_shadow;
-    
+
     .dropdown-divider {
       padding: 0 !important;
       color: transparentize($color: $textColor-2, $amount: .5);
@@ -230,26 +248,81 @@
         font-size: 1.3em;
         font-family: dosis;
         color: $textColor-1;
+
         i {
           color: $color-accent-1;
         }
       }
+
       .count {
         font-weight: 600;
         color: $pColor;
       }
+
       &:hover {
         background-color: transparentize($color: $textColor-2, $amount: .9);
+      }
+    }
+  }
+
+  .notifications-item {
+    &:hover {
+      background-color: transparentize($color: $textColor-2, $amount: .9) !important;
+    }
+  }
+
+  .notification {
+    .dropdown-menu {
+      width: 23rem !important;
+    }
+
+    .dropdown-list-image {
+      // position: relative;
+      padding: .5rem;
+      background-color: $pColor;
+    }
+
+    .btn-light {
+      color: #2cdd9b;
+      background-color: #e5f7f0;
+      border-color: #d8f7eb;
+    }
+  }
+
+  .notification,
+  .cart {
+    .micon {
+      cursor: pointer;
+
+      i {
+        color: white !important;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      i.has_some {
+        &:after {
+          position: absolute;
+          top: 2px;
+          right: 24px;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          content: "";
+          background: $color-accent-1;
+          animation: pulse-a 2s infinite;
+        }
       }
     }
   }
 }
 
 .profile-pic {
-  
+
   span {
     color: white;
   }
+
   .profile-pic-n-p {
     background-color: $color-accent-1;
     font-size: .7em;
@@ -258,38 +331,12 @@
 }
 
 .path-container {
-  margin-top: 4em;
   a {
     color: $textColor-1;
     font-size: .9em;
+
     &:hover {
       color: $pColor;
-    }
-  }
-}
-
-.user-logo {
-  height: 40px;
-  position: relative;
-  // border: 1px solid red;
-
-  span {
-    color: $textColor-1;
-    opacity: 0.7;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-family: $dosis;
-    margin-left: 10px;
-    &:after {
-      position: absolute;
-      top: 10px;
-      right: -5px;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      content: "";
-      background: $color-accent-1;
-      animation: pulse-a 2s infinite;
     }
   }
 }

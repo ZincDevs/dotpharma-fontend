@@ -153,7 +153,7 @@
   
   .inside{
     z-index:9;
-    background: rgba(17, 117, 231, 0.131);
+    background: rgba(17, 117, 231, 0.379);
     width:140px;
     height:140px;
     position: absolute;
@@ -162,18 +162,20 @@
     border-radius: 0px 0px 200px 200px;
     transition: all 0.5s, border-radius 2s, top 1s;
     overflow: hidden;
+    i {
+      font-size: medium;
+    }
     .icon{
       position:absolute;
       right:85px;
       top:85px;
       color:white;
-      opacity: 1;
       i {
         font-size: 20px;
       }
     }
     &:hover{
-      background: transparentize($pColor, $amount: .5);
+      background: transparentize($pColor, $amount: .2);
       width:100%;
       right:0;
       top:0;
