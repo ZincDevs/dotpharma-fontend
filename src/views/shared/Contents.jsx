@@ -32,7 +32,7 @@ function ContentHead() {
         <Logo width={35} height={35} />
       </div>
       <div className="w-auto d-flex justify-content-center align-items-center py-2">
-        <h3 className="d-none d-sm-flex">
+        <h3>
           Dot
           <strong>Pharma</strong>
         </h3>
