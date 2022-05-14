@@ -5,7 +5,7 @@ import key from 'uniqid';
 
 function Path({ path }) {
   return (
-    <div className="path-container w-100">
+    <div className="path-container w-100 py-3">
       <div className="container">
         <div className="d-flex">
           {path.map(({ name, path }, i) => (
