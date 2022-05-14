@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { logo } from '../../assets';
+import { logo, logoWhite } from '../../assets';
 
-function Logo({ width, height }) {
+function Logo({ width, height, white }) {
   return (
-    <img src={logo} style={{ width, height }} className="app-logo" alt="logo" />
+    <img src={white ? logoWhite : logo} style={{ width, height }} className="app-logo" alt="logo" />
   );
 }
 
