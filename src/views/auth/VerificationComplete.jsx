@@ -25,7 +25,6 @@ function SignUpVerificationComple() {
 
   useEffect(() => {
     const { session } = QueryString.parse(location.search);
-    // verifyUserAction(session);verifyUser
     setStatus('pending');
     verifyUser(session, (err, data) => {
       if (err) {
@@ -36,24 +35,6 @@ function SignUpVerificationComple() {
       }
     });
   }, []);
-  // useEffect(() => {
-  //   switch (verifyResponse.status) {
-  //     case 'success': {
-  //       setStatus('success');
-  //       handleRedirect(verifyResponse);
-  //       break;
-  //     }
-  //     case 'pending': {
-  //       setStatus('pending');
-  //       break;
-  //     }
-  //     case 'fail': {
-  //       setStatus('fail');
-  //       break;
-  //     }
-  //     default:
-  //   }
-  // }, [verifyResponse]);
 
   if (status === 'fail') {
     return (<VerificationFailed />);
