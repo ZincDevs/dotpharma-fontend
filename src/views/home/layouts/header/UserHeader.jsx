@@ -46,11 +46,11 @@ function UserHeader({ notifications }) {
   ];
   return (
     <div className="user-header">
-      <header className="p-3">
+      <header className="py-2">
         <div className="container">
           <div className="d-flex justify-content-between">
             <div className="user-logo d-flex justify-content-center align-items-center" href="#">
-              <Logo with={30} height={30} />
+              <Logo with={30} height={30} white />
               <span className="d-none d-sm-block">DOTPHARMA</span>
             </div>
 
@@ -58,7 +58,7 @@ function UserHeader({ notifications }) {
               {/* <form className="d-none d-md-block px-3">
                 <input type="search" className="form-control" placeholder="Search..." aria-label="Search" />
               </form> */}
-              <div className="dropdown text-end px-4 cart">
+              <div className="dropdown text-end px-4 cart d-flex align-items-center">
                 <span
                   className="micon"
                   id="cart"
@@ -78,7 +78,7 @@ function UserHeader({ notifications }) {
                   </li>
                 </ul>
               </div>
-              <div className="dropdown text-end px-4 notification">
+              <div className="dropdown text-end px-4 notification d-flex align-items-center">
                 <span
                   className="micon"
                   id="notifications"
@@ -99,7 +99,18 @@ function UserHeader({ notifications }) {
                 </ul>
               </div>
               <div className="dropdown text-end px-4">
-                <ProfilePic />
+                <div
+                  className="profile-pic-button d-flex align-items-center justify-content-center py-2 px-3"
+                  id="dropdownUser1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <div className="d-block d-md-none"><span><i className="bi bi-list" /></span></div>
+                  <div className="d-none d-md-block"><span><i className="bi bi-person" /></span></div>
+                  <div className="px-2 d-none d-md-block"><small>Rukundo eric</small></div>
+                  <div className="d-none d-md-block"><span><i className="bi bi-chevron-down" /></span></div>
+                </div>
+                {/* <ProfilePic /> */}
                 <ul className="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                   {menuItems.map(item => (<MenuItem key={key()} item={item} />))}
                 </ul>
