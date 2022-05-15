@@ -12,15 +12,7 @@ const {
   r_r_psw_rese_api,
   apply_psw_reset_api,
 } = Constants;
-// const axiosPrivate = useAxiosPrivate();
-// export const verifyUser = async token => {
-//   try {
-//     const { data } = await axios.put(verify_user_api(token));
-//     return { ...data, status: 'success' };
-//   } catch ({ response: { data } }) {
-//     return { ...data, status: 'fail' };
-//   }
-// };
+
 export const verifyUser = async (token, callback) => {
   try {
     const { data } = await axios.put(verify_user_api(token));
@@ -38,16 +30,6 @@ export const resentVerification = async (email, callback) => {
     callback(error);
   }
 };
-
-// export const resentVerification = async email => {
-//   try {
-//     const { data } = await axios.post(resend_verification_api, { email });
-//     return { ...data, status: 'success' };
-//   } catch ({ response: { data } }) {
-//     return { ...data, status: 'fail' };
-//   }
-// };
-
 export const passwordReset = async (info, callback) => {
   try {
     const { data } = await axios.post(r_psw_rese_api, info);
