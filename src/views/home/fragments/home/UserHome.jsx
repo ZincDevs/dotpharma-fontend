@@ -1,9 +1,11 @@
-/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable max-len */
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-expressions */
-import React, { useState, Suspense } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import _ from 'lodash';
 import key from 'uniqid';
 import { Link } from 'react-router-dom';
@@ -12,28 +14,74 @@ import UserHeader from '../../layouts/header/UserHeader';
 import Alert from '../../../shared/Alert';
 import { ProductPlaceholder } from '../../../shared/Placeholder';
 import HClinics from './components/HClinics';
+import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
+import { getMyProfile } from '../../../../app/features/user';
+import { getMedicines } from '../../../../app/features/medicine';
+import { addToCart, removeCart } from '../../../../api/index';
 
 const Product = React.lazy(() => import('../../../products/items/Product.item'));
-function UserHome({ alert: defaultAlert, products }) {
+
+function UserHome({ alert: defaultAlert }) {
+  const dispatch = useDispatch();
+  const axios = useAxiosPrivate();
   const [alert] = useState(defaultAlert);
   const [showAlert, setShowAlert] = useState(true);
 
-  const handleAddToCart = elem => {
-    elem.current.classList.add('clicked');
+  const profile = useSelector(state => state?.user?.MyProfile, shallowEqual);
+  const products = useSelector(state => state?.medicine?.medicines, shallowEqual);
+
+  const handleAddToCart = (elem, e, changeStatus) => {
+    const m_id = e.target?.id;
+    changeStatus('pending');
+    addToCart(axios, m_id, err => {
+      if (err) {
+        changeStatus('fail');
+        const resScode = err?.response?.status;
+        console.log(err?.response);
+      } else {
+        setTimeout(() => {
+          changeStatus('success');
+          elem.current.classList.add('clicked');
+          getMyProfile(dispatch, axios);
+        }, 2000);
+      }
+    });
   };
-  const handleRemooveFromCart = elem => {
-    elem.current.classList.remove('clicked');
+  const handleRemoveFromCart = (elem, e, changeStatus) => {
+    const c_id = e.target?.id;
+    changeStatus('pending');
+    removeCart(axios, c_id, err => {
+      if (err) {
+        changeStatus('fail');
+        const resScode = err?.response?.status;
+        console.log(err?.response);
+      } else {
+        setTimeout(() => {
+          changeStatus('success');
+          elem.current.classList.remove('clicked');
+          getMyProfile(dispatch, axios);
+        }, 2000);
+      }
+    });
   };
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
+
+  useEffect(() => {
+    getMyProfile(dispatch, axios);
+    getMedicines({ limit: 2 }, dispatch);
+  }, []);
+
+  // console.log(profile);
+
   return (
     <div className="content-home">
-      <UserHeader />
+      <UserHeader profile={profile} />
       <Path />
       {(showAlert && alert) && (<div className="container mt-4"><Alert info={alert} handleCloseAlert={handleCloseAlert} /></div>)}
       <div className="d-flex flex-column j-x-i-content container my-4">
-        <div className="d-flex flex-column-reverse flex-md-row">
+        <div className="d-flex flex-column flex-md-row">
           <div className="col-12 col-md-7 j-x-i-left">
             <div className="j-x-i-header py-2 px-3 d-flex">
               <div className="flex-grow-1"><span>Most searched medecines</span></div>
@@ -45,15 +93,17 @@ function UserHome({ alert: defaultAlert, products }) {
                   <Suspense fallback={<ProductPlaceholder />}>
                     <Product
                       handleAddToCart={handleAddToCart}
-                      handleRemooveFromCart={handleRemooveFromCart}
+                      handleRemooveFromCart={handleRemoveFromCart}
                       productDetails={product}
+                      key={`${key()}-${key()}`}
+                      cart={profile?.cart || []}
                     />
                   </Suspense>
                 </div>
               ))}
             </div>
             <div className="j-x-i-header py-2 px-3 text-center">
-              <div><Link to="/medicines">View all</Link></div>
+              <div><Link to="/medicines">View More</Link></div>
             </div>
           </div>
           <div className="col-12 col-md-5 j-x-i-right">
@@ -86,24 +136,8 @@ function UserHome({ alert: defaultAlert, products }) {
 UserHome.defaultProps = {
   alert: {
     type: 'info',
-    message: 'This action will only be accepted in next short less than 10 minutes. if you run out of time, you will have to request password reset confirmation again.',
+    message: 'Welcome to Dotpharma, be connected to health care products anytime from anywhere. we deliver the product to you in less than 54 minutes.',
   },
-  products: [
-    {
-      name: 'The Ordinary',
-      image: 'https://res.cloudinary.com/dqpwqfbjf/image/upload/v1651011414/dotpharma/gallery/769915190199-1000x1000-1000x1000.jpg_apfipr.webp',
-      description: 'The Ordinary Hyaluronic Acid 2% + B5 Moisturizing Formula With Ultra-Pure, Vegan Hyaluronic Acid. Hyaluronic Acid Is A Sponge-Like Substance That Absorbs Water And It Keeps It Inside The Skin, So The Face Appears Moist, Fresh And Tight Make The Skin Less Vulnerable To Damage From External And Environmental Factors. It Acts As An Antioxidant, Thus Reducing The Appearance Of Wrinkles And Fine Lines.',
-      price: '10000',
-      currency: 'RWF',
-    },
-    {
-      name: 'The Ordinary',
-      image: 'https://res.cloudinary.com/dqpwqfbjf/image/upload/v1651011414/dotpharma/gallery/769915190199-1000x1000-1000x1000.jpg_apfipr.webp',
-      description: 'The Ordinary Hyaluronic Acid 2% + B5 Moisturizing Formula With Ultra-Pure, Vegan Hyaluronic Acid. Hyaluronic Acid Is A Sponge-Like Substance That Absorbs Water And It Keeps It Inside The Skin, So The Face Appears Moist, Fresh And Tight Make The Skin Less Vulnerable To Damage From External And Environmental Factors. It Acts As An Antioxidant, Thus Reducing The Appearance Of Wrinkles And Fine Lines.',
-      price: '10000',
-      currency: 'RWF',
-    },
-  ],
 };
 
 export default UserHome;

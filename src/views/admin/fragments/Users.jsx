@@ -32,7 +32,6 @@ function users() {
       controller.abort();
     };
   }, []);
-  console.log(users);
   return (
     <div className="users">
       <div className="div1 p-3 my-3">

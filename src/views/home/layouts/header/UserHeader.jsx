@@ -2,19 +2,28 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import key from 'uniqid';
+import _ from 'lodash';
+import { useDispatch } from 'react-redux';
 import Logo from '../../../shared/Logo';
 import ProfilePic from '../../../shared/ProfilePic';
 import MenuItem from './items/MenuItem';
 import NotificationItem from './items/NotificationItem';
 import CartItem from './items/CartItem';
 import useLogout from '../../../../hooks/useLogout';
+import { getMyProfileAction } from '../../../../redux/actions/User';
+import useAxiosPrivate from '../../../../hooks/useAxiosPrivate';
 
-function UserHeader({ notifications }) {
+function UserHeader({ profile, notifications }) {
+  const dispatch = useDispatch();
   const logout = useLogout();
   const navigate = useNavigate();
+  const cart = profile?.cart;
+  // console.log(profile?.u_email?.split('@')[0]);
+  // console.log(profile?.patients[0]?.p_name);
+  const pname = profile?.u_email?.split('@')[0];
   const menuItems = [
     {
       name: 'Profile',
@@ -65,10 +74,10 @@ function UserHeader({ notifications }) {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <i className="bi bi-cart" />
+                  <i className={`bi bi-cart ${cart?.length && 'has_some'}`} />
                 </span>
                 <ul className="dropdown-menu text-small" aria-labelledby="cart">
-                  {menuItems.map(item => (<CartItem key={key()} item={item} />))}
+                  {_.map(cart, item => (<CartItem key={key()} item={item} />))}
                   <li>
                     <Link to="/cart" className="notifications-item">
                       <div className="d-flex py-2 justify-content-center">
@@ -107,7 +116,7 @@ function UserHeader({ notifications }) {
                 >
                   <div className="d-block d-md-none"><span><i className="bi bi-list" /></span></div>
                   <div className="d-none d-md-block"><span><i className="bi bi-person" /></span></div>
-                  <div className="px-2 d-none d-md-block"><small>Rukundo eric</small></div>
+                  <div className="px-2 d-none d-md-block"><small>{pname || ''}</small></div>
                   <div className="d-none d-md-block"><span><i className="bi bi-chevron-down" /></span></div>
                 </div>
                 {/* <ProfilePic /> */}

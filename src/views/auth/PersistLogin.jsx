@@ -14,7 +14,7 @@ function PersistLogin() {
   const stopLoading = () => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 1000);
   };
 
   useEffect(() => {

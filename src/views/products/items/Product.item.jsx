@@ -1,16 +1,37 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
+import _ from 'lodash';
 
 function Product({
   handleAddToCart,
   handleRemooveFromCart,
   productDetails: {
-    name, image, description, currency, price,
+    m_id,
+    m_name: name,
+    m_image: image,
+    m_desciption: description,
+    currency = 'RWF',
+    m_price: price,
   },
+  cart,
+  key,
 }) {
+  const [status, setStatus] = useState();
   const productBotton = useRef();
+  const cart_item = _.find(cart, item => item?.medicine?.m_id === m_id);
+  const changeStatus = status => {
+    setStatus(status);
+  };
+
+  useEffect(() => {
+    if (cart && cart_item) productBotton.current.classList.add('clicked');
+  }, []);
+
   return (
     <div className="product">
       <div className="content">
@@ -20,7 +41,7 @@ function Product({
             backgroundImage: `url(${image})`,
           }}
         />
-        <div ref={productBotton} className="bottom">
+        <div ref={productBotton} key={key} className="bottom">
           <div className="left">
             <div className="details">
               <h5>{name}</h5>
@@ -31,12 +52,22 @@ function Product({
               </h6>
             </div>
             <div
-              onClick={() => {
-                handleAddToCart(productBotton);
+              id={m_id}
+              onClick={e => {
+                handleAddToCart(productBotton, e, changeStatus);
               }}
               className="buy d-flex justify-content-center align-items-center"
             >
-              <i className="bi bi-cart-plus" />
+              {
+                status === 'pending' ? (
+                  <ThreeDots
+                    color="#F5F5F5"
+                    height="50"
+                    width="50"
+                  />
+                ) : (<i id={m_id} className="bi bi-cart-plus" />)
+              }
+
             </div>
           </div>
           <div className="right">
@@ -48,12 +79,21 @@ function Product({
               <p>Added to your cart</p>
             </div>
             <div
-              onClick={() => {
-                handleRemooveFromCart(productBotton);
+              id={cart_item?.c_id}
+              onClick={e => {
+                handleRemooveFromCart(productBotton, e, changeStatus);
               }}
               className="remove d-flex justify-content-center align-items-center"
             >
-              <i className="bi bi-x-lg" />
+              {
+                status === 'pending' ? (
+                  <ThreeDots
+                    color="#F5F5F5"
+                    height="50"
+                    width="50"
+                  />
+                ) : (<i id={cart_item?.c_id} className="bi bi-x-lg" />)
+              }
             </div>
           </div>
         </div>
@@ -71,14 +111,5 @@ function Product({
     </div>
   );
 }
-
-Product.defaultProps = {
-  name: 'Baobab Oil',
-  description:
-    'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat blanditiis, magnam deleniti deserunt totam minus pariatur. A nihil recusandae facilis perspiciatis? Eius atque, ut sapiente dignissimos voluptas voluptatibus fugit consequuntur',
-  price: '25000',
-  currency: 'RWF',
-  inCart: false,
-};
 
 export default Product;
