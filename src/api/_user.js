@@ -11,6 +11,7 @@ const {
   r_psw_rese_api,
   r_r_psw_rese_api,
   apply_psw_reset_api,
+  my_profile_api,
 } = Constants;
 
 export const verifyUser = async (token, callback) => {
@@ -51,6 +52,15 @@ export const resendPasswordReset = async (info, callback) => {
 export const applyPasswordReset = async (info, session, callback) => {
   try {
     const { data } = await axios.put(apply_psw_reset_api(session), info);
+    callback(null, data);
+  } catch (error) {
+    callback(error);
+  }
+};
+
+export const getMyProfile = async (axios, callback) => {
+  try {
+    const { data } = await axios.get(my_profile_api);
     callback(null, data);
   } catch (error) {
     callback(error);
