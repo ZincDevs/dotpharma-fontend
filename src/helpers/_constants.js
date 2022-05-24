@@ -14,6 +14,7 @@ export default {
   resend_verification_api: '/user/resendverification',
 
   cart_api: id => `/cart/${id}`,
+  medicines_api: ({ page = 1, limit = 10 }) => `/medicine/getallmedicines?page=${page}&limit=${limit}`,
 
-  medicines_api: (page = 1, limit = 10) => `/medicine/getallmedicines?page=${page}&limit=${limit}`,
+  my_profile_api: '/user/myprofile',
 };
