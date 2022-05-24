@@ -6,7 +6,7 @@ import './assets/css/style.css';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './views/App';
-import store from './redux';
+import { store } from './app/store';
 import { AuthProvider } from './context/AuthProvider';
 import ContactUs from './views/communication/contactus/ContactUs';
 
