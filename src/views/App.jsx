@@ -3,7 +3,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import key from 'uniqid';
 import Login from './auth/Login';
-import AdminLogin from './admin/auth/Login';
 import Signup from './auth/Signup';
 import ForgotPassword from './auth/ForgotPassword';
 import ApplyPasswordReset from './auth/ApplyPasswordReset';
@@ -12,8 +11,8 @@ import NotFound from './shared/NotFound';
 import Verification from './auth/VerificationComplete';
 import TermsAndConditions from './settings/TermsAndConditions';
 import PrivacyPolicy from './settings/PrivacyPolicy';
-import Services from './home/fragments/Services';
-import HealthTips from './home/fragments/HealthTips';
+// import Services from './home/fragments/Services';
+// import HealthTips from './home/fragments/HealthTips';
 import Layout from './layouts/Layout';
 import RequireAuth from './routes/RequireAuth';
 import RequireAuthHome from './routes/RequireAuthHome';
@@ -21,6 +20,7 @@ import RequireAuthAdmin from './routes/RequireAuthAdmin';
 import UserHome from './home/fragments/home/UserHome';
 
 import PersistLogin from './auth/PersistLogin';
+import Empty from './shared/Empty';
 
 // Admin components
 import Dashboard from './admin/Dashboard';
@@ -48,21 +48,22 @@ function App() {
 
         {/* Private Routes */}
         <Route element={<PersistLogin />}>
-
           <Route element={<RequireAuthHome />}>
-            <Route path="/" key={key()} element={<UserHome />} />
+            <Route path="/" key={key()} element={<UserHome />}>
+              <Route path="/clinics" key={key()} element={<Empty />} />
+              <Route path="/medicines" key={key()} element={<Empty />} />
+              <Route path="/services" key={key()} element={<Empty />} />
+            </Route>
           </Route>
+
           <Route element={<RequireAuth />}>
-            <Route path="/cart" key={key()} element={<Services />} />
-            <Route path="/orders" key={key()} element={<Services />} />
-            <Route path="/medecines" key={key()} element={<Services />} />
-            <Route path="/services" key={key()} element={<Services />} />
-            <Route path="/health-tips" key={key()} element={<HealthTips />} />
+            <Route path="/cart" key={key()} element={<Empty />} />
+            <Route path="/orders" key={key()} element={<Empty />} />
+            <Route path="/health-tips" key={key()} element={<Empty />} />
           </Route>
 
           {/* Admin routes */}
           {/* Public routes for admin */}
-          <Route path="/dashboard/login" key={key()} element={<AdminLogin />} />
           <Route path="/dashboard" key={key()} element={<Dashboard />}>
             {/* Private routes for admin */}
             {/* <Route element={<RequireAuthAdmin />}> */}

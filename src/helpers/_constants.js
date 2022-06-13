@@ -12,4 +12,9 @@ export default {
   apply_psw_reset_api: session => `/user/apply-password-reset/${session}`,
   verify_user_api: session => `/user/activateuser/${session}`,
   resend_verification_api: '/user/resendverification',
+
+  cart_api: id => `/cart/${id}`,
+  medicines_api: ({ page = 1, limit = 10 }) => `/medicine/getallmedicines?page=${page}&limit=${limit}`,
+
+  my_profile_api: '/user/myprofile',
 };

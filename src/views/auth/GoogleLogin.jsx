@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
@@ -5,7 +6,9 @@ import React from 'react';
 import GoogleLogin from 'react-google-login';
 import { googleAuth } from '../../api';
 
-export default function GoogleLoginComponent({ handleStatus, handleShowAlert, handleSuccess }) {
+export default function GoogleLoginComponent({
+  handleStatus, handleShowAlert, handleSuccess,
+}) {
   const handleOnSuccess = result => {
     const { tokenId: token } = result;
     handleStatus('pending');

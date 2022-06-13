@@ -24,6 +24,13 @@
   background: linear-gradient(90deg, #233c71, #233c71, rgba(35, 60, 113, 0.9), rgba(35, 60, 113, 0.8), rgba(35, 60, 113, 0.6)), url(../images/syringe.jpeg);
 }
 
+.path-container {
+  background: linear-gradient(90deg, white, white, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9), white), url(../images/syringe.jpeg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .banner .carousel-item:nth-of-type(2) {
   background: linear-gradient(90deg, #233c71, #233c71, rgba(35, 60, 113, 0.9), rgba(35, 60, 113, 0.8), rgba(35, 60, 113, 0.6)), url(../images/pills.jpeg);
 }
@@ -403,7 +410,7 @@
   }
 }
 body {
-  background-color: #f2f9ff;
+  background-color: #F5F5F5;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -939,7 +946,7 @@ input {
   }
 }
 .shared-container {
-  background-color: #f2f9ff;
+  background-color: #F5F5F5;
 }
 
 .progress-bar {
@@ -1270,7 +1277,7 @@ input {
 }
 
 .empty-container {
-  background-color: #f2f9ff;
+  background-color: #F5F5F5;
 }
 .empty-container .empty-content {
   min-height: 100vh;
@@ -1385,7 +1392,7 @@ input {
 }
 
 .loginContainer {
-  background-color: #f2f9ff;
+  background-color: #F5F5F5;
   padding: 0;
 }
 .loginContainer .row {
@@ -1432,9 +1439,21 @@ input {
   content: ".";
   font-family: dosis !important;
 }
+@media only screen and (min-width: 421px) and (max-width: 575px) {
+  .c-f-u-content {
+    width: 100%;
+  }
+}
+@media (max-width: 420px) {
+  .c-f-u-content {
+    width: 100%;
+  }
+}
 
 .c-f-content {
   background-color: white;
+  border-bottom: 3px solid #7dbae4;
+  border-top: 3px solid #7dbae4;
   box-shadow: 0 0 7px 0 #e1e1e1;
 }
 
@@ -1459,7 +1478,7 @@ input {
 }
 
 .signup-container {
-  background-color: #f2f9ff;
+  background-color: #F5F5F5;
 }
 
 .email-sent h1 {
@@ -1486,7 +1505,7 @@ input {
 }
 
 .doctor-container {
-  background-color: #f2f9ff;
+  background-color: #F5F5F5;
 }
 
 .main_menu {
@@ -1664,14 +1683,13 @@ input {
 }
 
 .user-header {
-  position: fixed;
   margin-top: 0 !important;
   z-index: 4 !important;
   right: 0;
   left: 0;
   top: 0;
   z-index: 0;
-  background: #233c71 !important;
+  background: #2B8DD0 !important;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 .user-header .user-logo {
@@ -1701,6 +1719,9 @@ input {
 .user-header .dropdown-menu .dropdown-divider {
   padding: 0 !important;
   color: rgba(187, 187, 187, 0.5);
+}
+.user-header .dropdown-menu .dropdown-item {
+  cursor: pointer;
 }
 .user-header .dropdown-menu .dropdown-item span {
   font-size: 1.3em;
@@ -1745,7 +1766,7 @@ input {
 .user-header .notification .micon i.has_some:after,
 .user-header .cart .micon i.has_some:after {
   position: absolute;
-  top: 2px;
+  top: 7px;
   right: 24px;
   width: 6px;
   height: 6px;
@@ -1764,12 +1785,27 @@ input {
   font-weight: 500;
 }
 
+.path-container {
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
 .path-container a {
   color: #797979;
   font-size: 0.9em;
 }
 .path-container a:hover {
   color: #2B8DD0;
+}
+
+.profile-pic-button {
+  color: white;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgba(35, 60, 113, 0.1);
+}
+.profile-pic-button:hover {
+  background-color: rgba(35, 60, 113, 0.2);
 }
 
 .banner {
@@ -2053,9 +2089,6 @@ input {
   transform: translate3d(0, 0, 0);
 }
 
-.product-container {
-  background-color: white;
-}
 .product-container .title h1 {
   font-size: 3em;
   font-family: dosis;
@@ -2064,11 +2097,12 @@ input {
 
 .product {
   height: 500px;
+  width: 100%;
   background: white;
   margin: auto;
   position: relative;
   overflow: hidden;
-  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0 0 7px 0 #e1e1e1;
   box-shadow: 0;
   transform: scale(0.95);
   transition: box-shadow 0.5s, transform 0.5s;
@@ -2120,7 +2154,6 @@ input {
 .product .content .bottom .left {
   height: 100%;
   width: 50%;
-  background: #f4f4f4;
   position: relative;
   float: left;
 }
@@ -2133,9 +2166,7 @@ input {
   float: right;
   width: calc(30% - 2px);
   height: 100%;
-  background: #f1f1f1;
   transition: background 0.5s;
-  border-left: solid thin rgba(0, 0, 0, 0.1);
 }
 .product .content .bottom .left .buy i {
   font-size: 30px;
@@ -2569,6 +2600,158 @@ input {
 .contactUs .open-contactus {
   display: block;
 }
+.content-home a {
+  color: #797979;
+  font-family: dosis;
+}
+.content-home .j-x-i-content .j-x-i-left {
+  background-color: white;
+}
+.content-home .j-x-i-content .j-x-i-right {
+  padding-left: 10px;
+}
+.content-home .j-x-i-content .j-x-i-right .j-x-i-inner {
+  background-color: white;
+}
+.content-home .j-x-i-content .j-x-i-right .j-x-i-inner .j-x-i-right-content {
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.content-home .j-x-i-content .j-x-i-right .j-x-i-inner .j-x-i-right-content::-webkit-scrollbar {
+  width: 3px;
+}
+.content-home .j-x-i-content .j-x-i-right .j-x-i-inner .j-x-i-right-content::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(233, 233, 233, 0.3);
+  border-radius: 0;
+}
+.content-home .j-x-i-content .j-x-i-right .j-x-i-inner .j-x-i-right-content::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background-color: #d1e7f6;
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .content-home .j-x-i-content .j-x-i-right {
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 576px) {
+  .content-home .j-x-i-content .j-x-i-right {
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (min-width: 421px) and (max-width: 575px) {
+  .content-home .j-x-i-content .j-x-i-right {
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 420px) {
+  .content-home .j-x-i-content .j-x-i-right {
+    padding-left: 0;
+    margin-bottom: 20px;
+  }
+}
+
+.j-x-i-header {
+  color: #797979;
+  background-color: white;
+  box-shadow: 0 0 5px 0 #e1e1e1;
+}
+.j-x-i-header span {
+  font-size: 1em;
+  font-weight: 500;
+  font-family: dosis;
+}
+.j-x-i-header .search-btn {
+  cursor: pointer;
+  color: #797979;
+}
+
+.f-x-i-clinix .f-x-i-clinix-cat .c-category-item {
+  border: 1px solid #e1e1e1;
+  width: 20%;
+  color: #797979;
+  font-weight: 500;
+  cursor: pointer;
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .f-x-i-clinix .f-x-i-clinix-cat .c-category-item {
+    width: 50%;
+  }
+}
+@media (max-width: 576px) {
+  .f-x-i-clinix .f-x-i-clinix-cat .c-category-item {
+    width: 50%;
+  }
+}
+@media only screen and (min-width: 421px) and (max-width: 575px) {
+  .f-x-i-clinix .f-x-i-clinix-cat .c-category-item {
+    width: 50%;
+  }
+}
+@media (max-width: 420px) {
+  .f-x-i-clinix .f-x-i-clinix-cat .c-category-item {
+    width: 50%;
+  }
+}
+.f-x-i-clinix .f-x-i-clinix-cat .c-category-item img {
+  height: 3rem;
+}
+.f-x-i-clinix .f-x-i-clinix-cat .c-category-item:nth-of-type(odd) {
+  background-color: #FAFAFA;
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .f-x-i-clinix .f-x-i-clinix-cat .c-category-item:nth-last-child(1) {
+    width: 100%;
+  }
+}
+@media (max-width: 576px) {
+  .f-x-i-clinix .f-x-i-clinix-cat .c-category-item:nth-last-child(1) {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 421px) and (max-width: 575px) {
+  .f-x-i-clinix .f-x-i-clinix-cat .c-category-item:nth-last-child(1) {
+    width: 100%;
+  }
+}
+@media (max-width: 420px) {
+  .f-x-i-clinix .f-x-i-clinix-cat .c-category-item:nth-last-child(1) {
+    width: 100%;
+  }
+}
+.f-x-i-clinix .f-x-i-clinix-cat .c-category-item:hover {
+  border: 2px solid rgba(43, 141, 208, 0.5);
+}
+.f-x-i-clinix .f-x-i-clinix-cat .c-category-item.active {
+  border: 4px solid rgba(43, 141, 208, 0.7);
+}
+.f-x-i-clinix .f-x-i-clinix-cat .c-category-item.active span {
+  color: rgba(43, 141, 208, 0.9);
+}
+.f-x-i-clinix .f-x-i-clinix-cat-info .col-6 {
+  border: 1px solid red;
+}
+.f-x-i-clinix .f-x-i-clinix-cat-info h2 {
+  color: #797979;
+  font-family: dosis;
+}
+.f-x-i-clinix .f-x-i-clinix-cat-info img {
+  width: 80%;
+}
+.f-x-i-clinix .f-x-i-clinix-cat-info img:only-of-type(1) {
+  width: 80%;
+}
+.f-x-i-clinix .f-x-i-clinix-cat-info a {
+  background-color: #2B8DD0;
+  color: white;
+}
+.f-x-i-clinix .f-x-i-clinix-cat-info p {
+  font-size: 1.1em;
+}
+
 .admin {
   display: flex;
   flex-wrap: nowrap;

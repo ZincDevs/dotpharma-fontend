@@ -4,11 +4,10 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from './layouts/Sidebar';
 import Header from './layouts/Header';
-import useAuth from '../../hooks/useAuth';
+// import useAuth from '../../hooks/useAuth';
 
 export default function Dashboard() {
-  const { auth } = useAuth();
-  console.log(auth);
+  // const { auth } = useAuth();
   return (
     <main className="admin d-flex">
       <div className="d-flex">

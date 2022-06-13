@@ -20,15 +20,11 @@ function useRefreshToken() {
   const refresh = async () => {
     try {
       const res = await axios.get(refresh_token_api);
-      setAuth(prev => {
-        console.log('Previos token', JSON.stringify(prev));
-        console.log('New token', res.data.access_token);
-        return {
-          ...prev,
-          access_token: res.data.access_token,
-          userData: res.data.userData,
-        };
-      });
+      setAuth(prev => ({
+        ...prev,
+        access_token: res.data.access_token,
+        userData: res.data.userData,
+      }));
       return res.data.access_token;
     } catch (error) {
       goToLogin();

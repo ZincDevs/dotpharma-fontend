@@ -1,7 +1,9 @@
 import {
   logIn, signUp, refreshToken, googleAuth,
 } from './_auth';
-import { verifyUser, resentVerification } from './_user';
+import { verifyUser, resentVerification, getMyProfile } from './_user';
+import { getMedicines } from './_medicine';
+import { addToCart, removeCart, updateCart } from './_cart';
 
 export {
   logIn,
@@ -10,4 +12,9 @@ export {
   resentVerification,
   refreshToken,
   googleAuth,
+  getMedicines,
+  getMyProfile,
+  addToCart,
+  removeCart,
+  updateCart,
 };

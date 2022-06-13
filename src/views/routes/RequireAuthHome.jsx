@@ -4,7 +4,6 @@ import GuestHome from '../home/fragments/home/GuestHome';
 
 function RequireAuthHome() {
   const { auth } = useAuth();
-  console.log(auth);
   return (
     auth?.access_token
       ? <Outlet />

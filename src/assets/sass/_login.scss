@@ -60,10 +60,18 @@
       font-family: dosis !important;
     }
   }
+
+  @each $screen in $all_extra_small_screen {
+    @media #{$screen} {
+      width: 100%;
+    }
+  }
 }
 
 .c-f-content {
   background-color: white;
+  border-bottom: 3px solid $color_accent_1;
+  border-top: 3px solid $color_accent_1;
   box-shadow: 0 0 7px 0 $bColor;
   // border-radius: 20px;
 }

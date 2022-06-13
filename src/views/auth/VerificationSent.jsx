@@ -21,6 +21,7 @@ function SignUpVerificationSent({ email }) {
         if (err) {
           setStatus('fail');
         } else {
+          setStatus('success');
           handleCanResend(data);
         }
       });

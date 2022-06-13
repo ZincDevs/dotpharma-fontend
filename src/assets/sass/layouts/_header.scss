@@ -200,15 +200,16 @@
 
 
 .user-header {
-  position: fixed;
+  // position: fixed;
   margin-top: 0 !important;
   z-index: 4 !important;
   right: 0;
   left: 0;
   top: 0;
   z-index: 0;
-  background: $color-primary-dark !important;
+  background: $pColor !important;
   box-shadow: $main_shadow;
+  // border: 1px solid red;
 
   .user-logo {
     height: 40px;
@@ -244,6 +245,7 @@
     }
 
     .dropdown-item {
+      cursor: pointer;
       span {
         font-size: 1.3em;
         font-family: dosis;
@@ -303,7 +305,7 @@
       i.has_some {
         &:after {
           position: absolute;
-          top: 2px;
+          top: 7px;
           right: 24px;
           width: 6px;
           height: 6px;
@@ -331,6 +333,10 @@
 }
 
 .path-container {
+  // border: 1px solid red;
+  background-color: white;
+  box-shadow: $main_shadow;
+  @extend %path-bg-gr-1;
   a {
     color: $textColor-1;
     font-size: .9em;
@@ -338,5 +344,16 @@
     &:hover {
       color: $pColor;
     }
+  }
+}
+
+.profile-pic-button {
+  color: white;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparentize($color-primary-dark, $amount: .9);
+  &:hover {
+    background-color: transparentize($color-primary-dark, $amount: .8);
   }
 }

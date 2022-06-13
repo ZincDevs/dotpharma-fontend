@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable max-len */
-import React from 'react';
+import React, { Suspense } from 'react';
 import key from 'uniqid';
-import Product from './items/Product.item';
+import { ProductPlaceholder } from '../shared/Placeholder';
+
+const Product = React.lazy(() => import('./items/Product.item'));
 
 function Products({ products }) {
   const handleAddToCart = elem => {
@@ -15,17 +18,16 @@ function Products({ products }) {
   return (
     <div className="product-container py-5">
       <div className="container">
-        <div className="row py-5 title">
-          <h1 className="text-center">Shop with Us</h1>
-        </div>
         <div className="row">
           {products.map(product => (
             <div key={key()} className="col-lg-4 product-card">
-              <Product
-                handleAddToCart={handleAddToCart}
-                handleRemooveFromCart={handleRemooveFromCart}
-                productDetails={product}
-              />
+              <Suspense fallback={<ProductPlaceholder />}>
+                <Product
+                  handleAddToCart={handleAddToCart}
+                  handleRemooveFromCart={handleRemooveFromCart}
+                  productDetails={product}
+                />
+              </Suspense>
             </div>
           ))}
         </div>

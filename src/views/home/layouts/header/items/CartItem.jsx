@@ -1,19 +1,25 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function CartItem() {
+export default function CartItem({ item }) {
   return (
     <li className="notifications-item">
       <Link to="/notifications">
         <div className="p-3 d-flex align-items-center border-bottom osahan-post-header">
           {/* <div className="dropdown-list-image d-flex align-items-center justify-content-center rounded-circle text-white">DR</div> */}
           <div>
-            <img src="https://res.cloudinary.com/dqpwqfbjf/image/upload/v1651011414/dotpharma/gallery/769915190199-1000x1000-1000x1000.jpg_apfipr.webp" alt="cartimage" width={60} height={60} />
+            <img src={item?.medicine?.m_image} alt="cartimage" width={60} />
           </div>
           <div className="font-weight-bold px-3">
-            <div className="text-truncate"><strong>Name</strong></div>
-            <div className=""><p>2500RWF</p></div>
+            <div className="text-truncate"><strong>{item?.medicine?.m_name}</strong></div>
+            <div className="">
+              <p>
+                {item?.medicine?.m_price}
+                RWF
+              </p>
+            </div>
           </div>
           <span className="ml-auto mb-auto">
             <div className="btn-group">
